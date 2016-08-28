@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-//declaring my varibles that will be used to calculate the opperations
+//declaring my variables that will be used to calculate the operations
     double opperandOne;
     double opperandTwo;
     char opp;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //setting my member varibles to pull buttons and views from xml
+        //setting my member variables to pull buttons and views from xml
 
         mButton1 = (Button) findViewById(R.id.button);
         mButton2 = (Button) findViewById(R.id.button2);
@@ -176,8 +176,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //Setting up the operators to get the text from the first section add it to opperandOne
-        //Then clear the text field, set the opp varible and set the top text field to show what opperation is taking place
+        //Setting up the operators to get the text from the first section add it to operandOne
+        //Then clear the text field, set the opp variable and set the top text field to show what operation is taking place
 
 
         mButtonPlus.setOnClickListener(new View.OnClickListener() {
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //Setup the equals button to perform our calculations, if you hit equals then opperandOne becomees operandTwo
+        //Setup the equals button to perform our calculations, if you hit equals then operandOne becomes operandTwo
         mButtonEquals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
