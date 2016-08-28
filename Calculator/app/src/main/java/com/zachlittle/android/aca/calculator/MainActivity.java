@@ -10,8 +10,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 //declaring my variables that will be used to calculate the operations
-    double opperandOne;
-    double opperandTwo;
+    double operandOne;
+    double operandTwo;
     char opp;
 
 
@@ -184,37 +184,37 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                    opperandOne = Double.parseDouble(mTextView.getText().toString());
+                    operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '+';
-                    mTextView2.setText(Double.toString(opperandOne) + " + ");
+                    mTextView2.setText(Double.toString(operandOne) + " + ");
             }
         });
         mButtonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                opperandOne = Double.parseDouble(mTextView.getText().toString());
+                operandOne = Double.parseDouble(mTextView.getText().toString());
                 mTextView.setText("");
                 opp = '-';
-                mTextView2.setText(Double.toString(opperandOne) + " - ");
+                mTextView2.setText(Double.toString(operandOne) + " - ");
             }
         });
         mButtonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                opperandOne = Double.parseDouble(mTextView.getText().toString());
+                operandOne = Double.parseDouble(mTextView.getText().toString());
                 mTextView.setText("");
                 opp = '/';
-                mTextView2.setText(Double.toString(opperandOne) + " / ");
+                mTextView2.setText(Double.toString(operandOne) + " / ");
             }
         });
         mButtonMultiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                opperandOne = Double.parseDouble(mTextView.getText().toString());
+                operandOne = Double.parseDouble(mTextView.getText().toString());
                 mTextView.setText("");
                 opp = '*';
-                mTextView2.setText(Double.toString(opperandOne) + " * ");
+                mTextView2.setText(Double.toString(operandOne) + " * ");
             }
         });
 
@@ -233,8 +233,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mTextView.setText("");
-                opperandOne = 0.0d;
-                opperandTwo = 1.0;
+                operandOne = 0.0d;
+                operandTwo = 1.0;
                 opp = '\u0000';
                 mTextView2.setText("");
             }
@@ -260,36 +260,36 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (opp == '+') {
-                    opperandTwo = Double.parseDouble(mTextView.getText().toString());
-                    Double answer = opperandOne + opperandTwo;
+                    operandTwo = Double.parseDouble(mTextView.getText().toString());
+                    Double answer = operandOne + operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(opperandOne) + " + " + Double.toString(opperandTwo) + " =");
+                    mTextView2.setText(Double.toString(operandOne) + " + " + Double.toString(operandTwo) + " =");
                     mTextView.setText(ans);
-                    opperandOne = opperandTwo;
+                    operandOne = operandTwo;
                 }
                 if (opp == '-') {
-                    opperandTwo = Double.parseDouble(mTextView.getText().toString());
-                    Double answer = opperandOne - opperandTwo;
+                    operandTwo = Double.parseDouble(mTextView.getText().toString());
+                    Double answer = operandOne - operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(opperandOne) + " - " +  Double.toString(opperandTwo) + "=");
+                    mTextView2.setText(Double.toString(operandOne) + " - " +  Double.toString(operandTwo) + "=");
                     mTextView.setText(ans);
-                    opperandOne = opperandTwo;
+                    operandOne = operandTwo;
                 }
                 if (opp == '/') {
-                    opperandTwo = Double.parseDouble(mTextView.getText().toString());
-                    Double answer = opperandOne / opperandTwo;
+                    operandTwo = Double.parseDouble(mTextView.getText().toString());
+                    Double answer = operandOne / operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(opperandOne) + " / " +  Double.toString(opperandTwo) + " =");
+                    mTextView2.setText(Double.toString(operandOne) + " / " +  Double.toString(operandTwo) + " =");
                     mTextView.setText(ans);
-                    opperandOne = opperandTwo;
+                    operandOne = operandTwo;
                 }
                 if (opp == '*') {
-                    opperandTwo = Double.parseDouble(mTextView.getText().toString());
-                    Double answer = opperandOne * opperandTwo;
+                    operandTwo = Double.parseDouble(mTextView.getText().toString());
+                    Double answer = operandOne * operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(opperandOne) + " * " +  Double.toString(opperandTwo) + " =");
+                    mTextView2.setText(Double.toString(operandOne) + " * " +  Double.toString(operandTwo) + " =");
                     mTextView.setText(ans);
-                    opperandOne = opperandTwo;
+                    operandOne = operandTwo;
                 }
             }
         });
