@@ -24,7 +24,7 @@ public class VariableTest extends AppCompatActivity {
         byteVar = 1;
         shortVar = 20;
         intVar = 300;
-        longVar = 4000;
+        longVar = 2^62;
         floatVar = (float) 1.1;
         doubleVar = 2.22;
         charVar = 'v';

@@ -10,7 +10,10 @@
     tools:context="com.zachlittle.android.aca.marsrobot.MainActivity">
 
     <TextView
+        android:id="@+id/main_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello Other World!"
+        android:maxLines = "500"
+        android:scrollbars = "vertical"/>
 </RelativeLayout>

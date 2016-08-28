@@ -6,7 +6,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 public class MainActivity extends AppCompatActivity {
+
+
+    double opperandOne;
+    double opperandTwo;
+    char opp;
+
+
 
     Button mButton1;
     Button mButton2;
@@ -18,8 +26,19 @@ public class MainActivity extends AppCompatActivity {
     Button mButton8;
     Button mButton9;
     Button mButton0;
+    Button mButtonPeriod;
+
+    Button mButtonBackspace;
+    Button mButtonPlus;
+    Button mButtonMinus;
+    Button mButtonDivide;
+    Button mButtonMultiply;
+    Button mButtonEquals;
+    Button mButtonC;
+    Button mButtonAC;
 
     TextView mTextView;
+    TextView mTextView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,36 +55,239 @@ public class MainActivity extends AppCompatActivity {
         mButton8 = (Button) findViewById(R.id.button8);
         mButton9 = (Button) findViewById(R.id.button9);
         mButton0 = (Button) findViewById(R.id.button0);
+        mButtonPeriod = (Button) findViewById(R.id.buttonPeriod);
+
+
+        mButtonBackspace = (Button) findViewById(R.id.buttonBackspace);
+        mButtonPlus = (Button) findViewById(R.id.buttonPlus);
+        mButtonEquals = (Button) findViewById(R.id.buttonEquals);
+        mButtonMinus = (Button) findViewById(R.id.buttonMinus);
+        mButtonDivide = (Button) findViewById(R.id.buttonDivide);
+        mButtonMultiply = (Button) findViewById(R.id.buttonMultiply);
+        mButtonC = (Button) findViewById(R.id.buttonClear);
+        mButtonAC = (Button)findViewById(R.id.buttonAllClear);
 
         mTextView = (TextView) findViewById(R.id.textView);
+        mTextView2 = (TextView) findViewById(R.id.textView2);
 
-        final double buttonOne = 1;
-        final double buttonTwo = 2;
-        double buttonThree = 3;
-        double buttonFour = 4;
-        double buttonFive = 5;
-        double buttonSix = 6;
-        double buttonSeven = 7;
-        double buttonEight = 8;
-        double buttonNine = 9;
-        double buttonZero = 0;
+        final int buttonOne = 1;
+        final int buttonTwo = 2;
+        final int buttonThree = 3;
+        final int buttonFour = 4;
+        final int buttonFive = 5;
+        final int buttonSix = 6;
+        final int buttonSeven = 7;
+        final int buttonEight = 8;
+        final int buttonNine = 9;
+        final int buttonZero = 0;
+        final char buttonPeriod = '.';
 
 
+
+
+
+
+//Next section is to take the buttons that you push and add them into the text field
 
     mButton1.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            mTextView.append(Double.toString(buttonOne));
+            mTextView.append(Integer.toString(buttonOne));
         }
     });
 
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTextView.append(Double.toString(buttonTwo));
+                mTextView.append(Integer.toString(buttonTwo));
             }
         });
 
+        mButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.append(Integer.toString(buttonThree));
+            }
+        });
+
+        mButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.append(Integer.toString(buttonFour));
+            }
+        });
+
+        mButton5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.append(Integer.toString(buttonFive));
+            }
+        });
+
+        mButton6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.append(Integer.toString(buttonSix));
+            }
+        });
+
+        mButton7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.append(Integer.toString(buttonSeven));
+            }
+        });
+
+        mButton8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.append(Integer.toString(buttonEight));
+            }
+        });
+
+        mButton9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.append(Integer.toString(buttonNine));
+            }
+        });
+
+        mButton0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.append(Integer.toString(buttonZero));
+            }
+        });
+
+        mButtonPeriod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.append(Character.toString(buttonPeriod));
+            }
+        });
+
+
+
+
+
+
+
+        //Setting up the operators to get the text from the first section
+
+
+        mButtonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    opperandOne = Double.parseDouble(mTextView.getText().toString());
+                    mTextView.setText("");
+                    opp = '+';
+                    mTextView2.setText(Double.toString(opperandOne) + " + ");
+            }
+        });
+        mButtonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                opperandOne = Double.parseDouble(mTextView.getText().toString());
+                mTextView.setText("");
+                opp = '-';
+                mTextView2.setText(Double.toString(opperandOne) + " - ");
+            }
+        });
+        mButtonDivide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                opperandOne = Double.parseDouble(mTextView.getText().toString());
+                mTextView.setText("");
+                opp = '/';
+                mTextView2.setText(Double.toString(opperandOne) + " / ");
+            }
+        });
+        mButtonMultiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                opperandOne = Double.parseDouble(mTextView.getText().toString());
+                mTextView.setText("");
+                opp = '*';
+                mTextView2.setText(Double.toString(opperandOne) + " * ");
+            }
+        });
+
+
+        //Setup Clear Buttons
+
+        mButtonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.setText("");
+
+            }
+        });
+
+        mButtonAC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTextView.setText("");
+                opperandOne = 0.0d;
+                opperandTwo = 1.0;
+                opp = '\u0000';
+                mTextView2.setText("");
+            }
+        });
+
+        mButtonBackspace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String backspace = mTextView.getText().toString();
+                mTextView.setText(backspace.substring(0, backspace.length() -1));
+            }
+        });
+
+
+
+
+
+
+
+
+        //Setup the equals button to perform our calculations
+        mButtonEquals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (opp == '+') {
+                    opperandTwo = Double.parseDouble(mTextView.getText().toString());
+                    Double answer = opperandOne + opperandTwo;
+                    String ans = Double.toString(answer);
+                    mTextView2.setText(Double.toString(opperandOne) + " + " + Double.toString(opperandTwo) + " =");
+                    mTextView.setText(ans);
+                    opperandOne = opperandTwo;
+                }
+                if (opp == '-') {
+                    opperandTwo = Double.parseDouble(mTextView.getText().toString());
+                    Double answer = opperandOne - opperandTwo;
+                    String ans = Double.toString(answer);
+                    mTextView2.setText(Double.toString(opperandOne) + " - " +  Double.toString(opperandTwo) + "=");
+                    mTextView.setText(ans);
+                    opperandOne = opperandTwo;
+                }
+                if (opp == '/') {
+                    opperandTwo = Double.parseDouble(mTextView.getText().toString());
+                    Double answer = opperandOne / opperandTwo;
+                    String ans = Double.toString(answer);
+                    mTextView2.setText(Double.toString(opperandOne) + " / " +  Double.toString(opperandTwo) + " =");
+                    mTextView.setText(ans);
+                    opperandOne = opperandTwo;
+                }
+                if (opp == '*') {
+                    opperandTwo = Double.parseDouble(mTextView.getText().toString());
+                    Double answer = opperandOne * opperandTwo;
+                    String ans = Double.toString(answer);
+                    mTextView2.setText(Double.toString(opperandOne) + " * " +  Double.toString(opperandTwo) + " =");
+                    mTextView.setText(ans);
+                    opperandOne = opperandTwo;
+                }
+            }
+        });
 
 
 
