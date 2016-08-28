@@ -10,8 +10,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 //declaring my variables that will be used to calculate the operations
-    double operandOne;
-    double operandTwo;
+    double operandOne = 0.0d;
+    double operandTwo = 0.0;
     char opp;
 
 
@@ -184,37 +184,64 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (mTextView.getText().toString().length() == 0) {
+                    mTextView.setText("");
+
+                } else {
+
                     operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '+';
                     mTextView2.setText(Double.toString(operandOne) + " + ");
+                }
+
             }
         });
         mButtonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                operandOne = Double.parseDouble(mTextView.getText().toString());
-                mTextView.setText("");
-                opp = '-';
-                mTextView2.setText(Double.toString(operandOne) + " - ");
+
+                if (mTextView.getText().toString().length() == 0) {
+                    mTextView.setText("");
+
+                }else {
+
+
+                    operandOne = Double.parseDouble(mTextView.getText().toString());
+                    mTextView.setText("");
+                    opp = '-';
+                    mTextView2.setText(Double.toString(operandOne) + " - ");
+                }
             }
         });
         mButtonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                operandOne = Double.parseDouble(mTextView.getText().toString());
-                mTextView.setText("");
-                opp = '/';
-                mTextView2.setText(Double.toString(operandOne) + " / ");
+
+                if (mTextView.getText().toString().length() == 0) {
+                    mTextView.setText("");
+
+                } else {
+                    operandOne = Double.parseDouble(mTextView.getText().toString());
+                    mTextView.setText("");
+                    opp = '/';
+                    mTextView2.setText(Double.toString(operandOne) + " / ");
+                }
             }
         });
         mButtonMultiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                operandOne = Double.parseDouble(mTextView.getText().toString());
-                mTextView.setText("");
-                opp = '*';
-                mTextView2.setText(Double.toString(operandOne) + " * ");
+
+                if (mTextView.getText().toString().length() == 0) {
+                    mTextView.setText("");
+
+                } else {
+                    operandOne = Double.parseDouble(mTextView.getText().toString());
+                    mTextView.setText("");
+                    opp = '*';
+                    mTextView2.setText(Double.toString(operandOne) + " * ");
+                }
             }
         });
 
@@ -243,8 +270,13 @@ public class MainActivity extends AppCompatActivity {
         mButtonBackspace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String backspace = mTextView.getText().toString();
-                mTextView.setText(backspace.substring(0, backspace.length() -1));
+                if (mTextView.getText().toString().length() == 0) {
+                    mTextView.setText("");
+
+                }else {
+                    String backspace = mTextView.getText().toString();
+                    mTextView.setText(backspace.substring(0, backspace.length() - 1));
+                }
             }
         });
 
