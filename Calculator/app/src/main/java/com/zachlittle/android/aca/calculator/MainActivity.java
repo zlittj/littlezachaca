@@ -9,13 +9,13 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-
+//declaring my varibles that will be used to calculate the opperations
     double opperandOne;
     double opperandTwo;
     char opp;
 
 
-
+//declaring  member variables
     Button mButton1;
     Button mButton2;
     Button mButton3;
@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //setting my member varibles to pull buttons and views from xml
+
         mButton1 = (Button) findViewById(R.id.button);
         mButton2 = (Button) findViewById(R.id.button2);
         mButton3 = (Button) findViewById(R.id.button3);
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
         mTextView = (TextView) findViewById(R.id.textView);
         mTextView2 = (TextView) findViewById(R.id.textView2);
+
+        //setting values for the buttons, these values won't change.
 
         final int buttonOne = 1;
         final int buttonTwo = 2;
@@ -172,7 +176,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //Setting up the operators to get the text from the first section
+        //Setting up the operators to get the text from the first section add it to opperandOne
+        //Then clear the text field, set the opp varible and set the top text field to show what opperation is taking place
 
 
         mButtonPlus.setOnClickListener(new View.OnClickListener() {
@@ -250,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //Setup the equals button to perform our calculations
+        //Setup the equals button to perform our calculations, if you hit equals then opperandOne becomees operandTwo
         mButtonEquals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
