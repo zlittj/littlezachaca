@@ -192,7 +192,8 @@ public class MainActivity extends AppCompatActivity {
                     operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '+';
-                    mTextView2.setText(Double.toString(operandOne) + " + ");
+                    String showCalc = Double.toString(operandOne) + " + ";
+                    mTextView2.setText(showCalc);
                 }
 
             }
@@ -210,7 +211,8 @@ public class MainActivity extends AppCompatActivity {
                     operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '-';
-                    mTextView2.setText(Double.toString(operandOne) + " - ");
+                    String showCalc = Double.toString(operandOne) + " - ";
+                    mTextView2.setText(showCalc);
                 }
             }
         });
@@ -225,7 +227,8 @@ public class MainActivity extends AppCompatActivity {
                     operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '/';
-                    mTextView2.setText(Double.toString(operandOne) + " / ");
+                    String showCalc = Double.toString(operandOne) + " / ";
+                    mTextView2.setText(showCalc);
                 }
             }
         });
@@ -240,7 +243,8 @@ public class MainActivity extends AppCompatActivity {
                     operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '*';
-                    mTextView2.setText(Double.toString(operandOne) + " * ");
+                    String showCalc = Double.toString(operandOne) + " * ";
+                    mTextView2.setText(showCalc);
                 }
             }
         });
@@ -295,7 +299,8 @@ public class MainActivity extends AppCompatActivity {
                     operandTwo = Double.parseDouble(mTextView.getText().toString());
                     Double answer = operandOne + operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(operandOne) + " + " + Double.toString(operandTwo) + " =");
+                    String showCalc = Double.toString(operandOne) + " + " + Double.toString(operandTwo) + " =";
+                    mTextView2.setText(showCalc);
                     mTextView.setText(ans);
                     operandOne = operandTwo;
                 }
@@ -303,7 +308,8 @@ public class MainActivity extends AppCompatActivity {
                     operandTwo = Double.parseDouble(mTextView.getText().toString());
                     Double answer = operandOne - operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(operandOne) + " - " +  Double.toString(operandTwo) + "=");
+                    String showCalc = Double.toString(operandOne) + " - " + Double.toString(operandTwo) + " =";
+                    mTextView2.setText(showCalc);
                     mTextView.setText(ans);
                     operandOne = operandTwo;
                 }
@@ -311,7 +317,8 @@ public class MainActivity extends AppCompatActivity {
                     operandTwo = Double.parseDouble(mTextView.getText().toString());
                     Double answer = operandOne / operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(operandOne) + " / " +  Double.toString(operandTwo) + " =");
+                    String showCalc = Double.toString(operandOne) + " / " + Double.toString(operandTwo) + " =";
+                    mTextView2.setText(showCalc);
                     mTextView.setText(ans);
                     operandOne = operandTwo;
                 }
@@ -319,7 +326,8 @@ public class MainActivity extends AppCompatActivity {
                     operandTwo = Double.parseDouble(mTextView.getText().toString());
                     Double answer = operandOne * operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(operandOne) + " * " +  Double.toString(operandTwo) + " =");
+                    String showCalc = Double.toString(operandOne) + " * " + Double.toString(operandTwo) + " =";
+                    mTextView2.setText(showCalc);
                     mTextView.setText(ans);
                     operandOne = operandTwo;
                 }
