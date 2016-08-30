@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button mButton9;
     Button mButton0;
     Button mButtonPeriod;
+    Button mButtonNeg;
 
     Button mButtonBackspace;
     Button mButtonPlus;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         mButton9 = (Button) findViewById(R.id.button9);
         mButton0 = (Button) findViewById(R.id.button0);
         mButtonPeriod = (Button) findViewById(R.id.buttonPeriod);
+        mButtonNeg = (Button) findViewById(R.id.buttonNeg);
 
 
         mButtonBackspace = (Button) findViewById(R.id.buttonBackspace);
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         final int buttonNine = 9;
         final int buttonZero = 0;
         final char buttonPeriod = '.';
+        final char buttonNegative = '-';
 
 
 
@@ -167,6 +170,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mTextView.append(Character.toString(buttonPeriod));
+            }
+        });
+        mButtonNeg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String neg = "-" + mTextView.getText().toString();
+                mTextView.setText(neg);
             }
         });
 
