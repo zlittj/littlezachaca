@@ -19,7 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
         String birthday;
         //setup a string called birthday
-        birthday = "MM/DD/YYYY";
+        birthday = "04/29/2014";
+
+
+
         //create substrings of string birthday
        String month = birthday.substring(0, 2);
         String day = birthday.substring(3, 5);

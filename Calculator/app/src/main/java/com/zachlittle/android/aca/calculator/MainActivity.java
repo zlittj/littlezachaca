@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button mButton9;
     Button mButton0;
     Button mButtonPeriod;
+    Button mButtonNeg;
 
     Button mButtonBackspace;
     Button mButtonPlus;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         mButton9 = (Button) findViewById(R.id.button9);
         mButton0 = (Button) findViewById(R.id.button0);
         mButtonPeriod = (Button) findViewById(R.id.buttonPeriod);
+        mButtonNeg = (Button) findViewById(R.id.buttonNeg);
 
 
         mButtonBackspace = (Button) findViewById(R.id.buttonBackspace);
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         final int buttonNine = 9;
         final int buttonZero = 0;
         final char buttonPeriod = '.';
+        final char buttonNegative = '-';
 
 
 
@@ -169,6 +172,13 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.append(Character.toString(buttonPeriod));
             }
         });
+        mButtonNeg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String neg = "-" + mTextView.getText().toString();
+                mTextView.setText(neg);
+            }
+        });
 
 
 
@@ -192,7 +202,8 @@ public class MainActivity extends AppCompatActivity {
                     operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '+';
-                    mTextView2.setText(Double.toString(operandOne) + " + ");
+                    String showCalc = Double.toString(operandOne) + " + ";
+                    mTextView2.setText(showCalc);
                 }
 
             }
@@ -210,7 +221,8 @@ public class MainActivity extends AppCompatActivity {
                     operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '-';
-                    mTextView2.setText(Double.toString(operandOne) + " - ");
+                    String showCalc = Double.toString(operandOne) + " - ";
+                    mTextView2.setText(showCalc);
                 }
             }
         });
@@ -225,7 +237,8 @@ public class MainActivity extends AppCompatActivity {
                     operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '/';
-                    mTextView2.setText(Double.toString(operandOne) + " / ");
+                    String showCalc = Double.toString(operandOne) + " / ";
+                    mTextView2.setText(showCalc);
                 }
             }
         });
@@ -240,7 +253,8 @@ public class MainActivity extends AppCompatActivity {
                     operandOne = Double.parseDouble(mTextView.getText().toString());
                     mTextView.setText("");
                     opp = '*';
-                    mTextView2.setText(Double.toString(operandOne) + " * ");
+                    String showCalc = Double.toString(operandOne) + " * ";
+                    mTextView2.setText(showCalc);
                 }
             }
         });
@@ -295,7 +309,8 @@ public class MainActivity extends AppCompatActivity {
                     operandTwo = Double.parseDouble(mTextView.getText().toString());
                     Double answer = operandOne + operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(operandOne) + " + " + Double.toString(operandTwo) + " =");
+                    String showCalc = Double.toString(operandOne) + " + " + Double.toString(operandTwo) + " =";
+                    mTextView2.setText(showCalc);
                     mTextView.setText(ans);
                     operandOne = operandTwo;
                 }
@@ -303,7 +318,8 @@ public class MainActivity extends AppCompatActivity {
                     operandTwo = Double.parseDouble(mTextView.getText().toString());
                     Double answer = operandOne - operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(operandOne) + " - " +  Double.toString(operandTwo) + "=");
+                    String showCalc = Double.toString(operandOne) + " - " + Double.toString(operandTwo) + " =";
+                    mTextView2.setText(showCalc);
                     mTextView.setText(ans);
                     operandOne = operandTwo;
                 }
@@ -311,7 +327,8 @@ public class MainActivity extends AppCompatActivity {
                     operandTwo = Double.parseDouble(mTextView.getText().toString());
                     Double answer = operandOne / operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(operandOne) + " / " +  Double.toString(operandTwo) + " =");
+                    String showCalc = Double.toString(operandOne) + " / " + Double.toString(operandTwo) + " =";
+                    mTextView2.setText(showCalc);
                     mTextView.setText(ans);
                     operandOne = operandTwo;
                 }
@@ -319,7 +336,8 @@ public class MainActivity extends AppCompatActivity {
                     operandTwo = Double.parseDouble(mTextView.getText().toString());
                     Double answer = operandOne * operandTwo;
                     String ans = Double.toString(answer);
-                    mTextView2.setText(Double.toString(operandOne) + " * " +  Double.toString(operandTwo) + " =");
+                    String showCalc = Double.toString(operandOne) + " * " + Double.toString(operandTwo) + " =";
+                    mTextView2.setText(showCalc);
                     mTextView.setText(ans);
                     operandOne = operandTwo;
                 }
