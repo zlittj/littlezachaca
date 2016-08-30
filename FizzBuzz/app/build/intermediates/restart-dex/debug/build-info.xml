@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="armeabi-v7a,armeabi"
+    api-level="23"
+    density="xxhdpi"
+    format="7"
+    timestamp="691272945306"
+    token="2418294656118219884" >
+
+    <task
+        name="javac"
+        duration="1905" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="517" />
+    <task
+        name="verifier"
+        duration="49" />
+
+    <artifact
+        location="/Users/Zach/Desktop/littlezachaca/FizzBuzz/app/build/outputs/apk/app-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="691272945306" >
+        <artifact
+            location="/Users/Zach/Desktop/littlezachaca/FizzBuzz/app/build/outputs/apk/app-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>

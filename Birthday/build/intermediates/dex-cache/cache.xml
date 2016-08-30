@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="9d3641b5a80e8abc6d119880ae73bebadb4c6c5a">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e44cfb8c4f3599b47e0b18b1fb37f3202332bf1a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.0_f6b0b020229c5648316b7e3c7fd3a0352400e22d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.0_c37cfd8b282e924792060be533d41ac07b0abed4/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="33b1bd9fcb9faee16652ef24a4ab6b6679027ab5">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_10770f88b09c101000fea4ce4ad35db49d63dfb6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.0_b01214a0b3d9d1cd2567fa36309aebcb47f48543/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_1fafb5c7a88685ee4271db35514bc2b233dc1b5f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_c47aa43dcafe3c89131e17e835b57003e9986ec7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_8d6ff1598836ee306baf71277844fc10a03078fb/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.0_478c564dff4956966765df0d9ec0c0344da619e6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.0_39bb6ad4daa0515cdd3ada42bf43c8b5413c6ae2/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.0_9235db1a2d57b926e9c600798fa04015f67890d1/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.0_c7c51e29c57d993fba7632e52843bc77b508efdd/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.0_cf68dc81fded1370655f765ca10b772a7a567281/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_f4a71d521449bc7c39b11428ee4edc68b2f8090b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_7262781bba6d38407765ccc5a7e47c2d9ef738f7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.0_dd44aec9586a154aa18827155c822d429014d28f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/Zach/Desktop/littlezachaca/Birthday/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_3a6a5daaaffdbc168090cf2e51347acdee3ea968/classes.dex" />
+    </item>
+
+</items>
