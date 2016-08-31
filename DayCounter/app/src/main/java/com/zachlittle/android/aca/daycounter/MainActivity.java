@@ -12,12 +12,12 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 1; i <= 12; i++) {
             int yearIn = 2016;
-            int monthIn = i;
 
-            System.out.println(monthIn + "/" + yearIn + "has "
-                    + countDays(monthIn, yearIn) + " days.");
-            for (int d =1; d<=countDays(monthIn, yearIn); d++){
-                System.out.println(monthIn + "/" + d + "/" + yearIn);
+
+            System.out.println(i + "/" + yearIn + "has "
+                    + countDays(i, yearIn) + " days.");
+            for (int d =1; d<=countDays(i, yearIn); d++){
+                System.out.println(i + "/" + d + "/" + yearIn);
                             }
         }
 

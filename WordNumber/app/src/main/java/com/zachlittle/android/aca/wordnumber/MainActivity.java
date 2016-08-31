@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     Button mButton;
     TextView mTextView;
     EditText mEditText;
-    int myNumber;
+    long myNumber;
     //one two three four five six seven eight nine ten
 
     @Override
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myNumber =11;
                 String wordFormNumber = mEditText.getText().toString();
                 char firstChar = wordFormNumber.charAt(0);
                 char secondChar = wordFormNumber.charAt(1);
@@ -38,7 +39,21 @@ public class MainActivity extends AppCompatActivity {
                         myNumber =1;
                         break;
                     case 't':
-                        switch (secondChar) {
+                        if (secondChar == 'w'){
+                            myNumber =2;
+                            break;
+                        }
+                        if (secondChar == 'h'){
+                            myNumber =3;
+                            break;
+                        }
+                        if (secondChar == 'e'){
+                            myNumber =10;
+                            break;
+                        }
+
+
+                        /*switch (secondChar) {
                             case 'w':
                                 myNumber = 2;
                                 break;
@@ -50,26 +65,52 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             default:
                                 break;
+                        }*/
 
-                        }
+
+
+
                     case 'f':
-                        switch (secondChar) {
+                        if (secondChar == 'o'){
+                            myNumber =4;
+                            break;
+                        }
+                        if (secondChar == 'i'){
+                            myNumber =5;
+                            break;
+                        }
+                        break;
+
+                        /*switch (secondChar) {
                             case 'o':
                                 myNumber = 4;
                                 break;
                             case 'i':
                                 myNumber = 5;
                                 break;
-                        }
+                        }*/
+
+
                     case 's':
-                        switch (secondChar) {
+                        if (secondChar == 'i'){
+                            myNumber =6;
+                            break;
+                        }
+                        if (secondChar == 'e'){
+                            myNumber =7;
+                            break;
+                        }
+                        break;
+
+                       /*switch (secondChar) {
                             case 'i':
                                 myNumber = 6;
                                 break;
                             case 'e':
                                 myNumber = 7;
                                 break;
-                        }
+                        }*/
+
                     case 'e':
                         myNumber =8;
                         break;
@@ -84,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
                 if (myNumber !=11) {
                     mTextView.setText("Your number is: " + myNumber);
                 }else { mTextView.setText("You didn't type it in right!");}
+
+                mEditText.setText("");
 
             }
         });
