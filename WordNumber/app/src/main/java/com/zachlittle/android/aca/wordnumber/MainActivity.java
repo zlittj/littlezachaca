@@ -27,30 +27,33 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myNumber =11;
-                String wordFormNumber = mEditText.getText().toString();
-                char firstChar = wordFormNumber.charAt(0);
-                char secondChar = wordFormNumber.charAt(1);
+                if (mEditText.getText().toString().equals("")) {
+                    mEditText.setText("");
+                } else {
+
+                    myNumber = 11;
+                    String wordFormNumber = mEditText.getText().toString();
+                    char firstChar = wordFormNumber.charAt(0);
+                    char secondChar = wordFormNumber.charAt(1);
 
 
-
-                switch (firstChar) {
-                    case 'o':
-                        myNumber =1;
-                        break;
-                    case 't':
-                        if (secondChar == 'w'){
-                            myNumber =2;
+                    switch (firstChar) {
+                        case 'o':
+                            myNumber = 1;
                             break;
-                        }
-                        if (secondChar == 'h'){
-                            myNumber =3;
-                            break;
-                        }
-                        if (secondChar == 'e'){
-                            myNumber =10;
-                            break;
-                        }
+                        case 't':
+                            if (secondChar == 'w') {
+                                myNumber = 2;
+                                break;
+                            }
+                            if (secondChar == 'h') {
+                                myNumber = 3;
+                                break;
+                            }
+                            if (secondChar == 'e') {
+                                myNumber = 10;
+                                break;
+                            }
 
 
                         /*switch (secondChar) {
@@ -68,18 +71,16 @@ public class MainActivity extends AppCompatActivity {
                         }*/
 
 
-
-
-                    case 'f':
-                        if (secondChar == 'o'){
-                            myNumber =4;
+                        case 'f':
+                            if (secondChar == 'o') {
+                                myNumber = 4;
+                                break;
+                            }
+                            if (secondChar == 'i') {
+                                myNumber = 5;
+                                break;
+                            }
                             break;
-                        }
-                        if (secondChar == 'i'){
-                            myNumber =5;
-                            break;
-                        }
-                        break;
 
                         /*switch (secondChar) {
                             case 'o':
@@ -91,16 +92,16 @@ public class MainActivity extends AppCompatActivity {
                         }*/
 
 
-                    case 's':
-                        if (secondChar == 'i'){
-                            myNumber =6;
+                        case 's':
+                            if (secondChar == 'i') {
+                                myNumber = 6;
+                                break;
+                            }
+                            if (secondChar == 'e') {
+                                myNumber = 7;
+                                break;
+                            }
                             break;
-                        }
-                        if (secondChar == 'e'){
-                            myNumber =7;
-                            break;
-                        }
-                        break;
 
                        /*switch (secondChar) {
                             case 'i':
@@ -111,23 +112,26 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }*/
 
-                    case 'e':
-                        myNumber =8;
-                        break;
-                    case 'n':
-                        myNumber =9;
-                        break;
-                    default:
-                        myNumber =11;
-                        break;
+                        case 'e':
+                            myNumber = 8;
+                            break;
+                        case 'n':
+                            myNumber = 9;
+                            break;
+                        default:
+                            myNumber = 11;
+                            break;
+                    }
+
+                    if (myNumber != 11) {
+                        mTextView.setText("Your number is: " + myNumber);
+                    } else {
+                        mTextView.setText("You didn't type it in right!");
+                    }
+
+                    mEditText.setText("");
+
                 }
-
-                if (myNumber !=11) {
-                    mTextView.setText("Your number is: " + myNumber);
-                }else { mTextView.setText("You didn't type it in right!");}
-
-                mEditText.setText("");
-
             }
         });
 
