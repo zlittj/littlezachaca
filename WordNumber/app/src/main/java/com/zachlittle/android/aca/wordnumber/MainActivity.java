@@ -9,10 +9,9 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button mButton;
-    TextView mTextView;
-    EditText mEditText;
-    long myNumber;
+    private TextView mTextView;
+    private EditText mEditText;
+
     //one two three four five six seven eight nine ten
 
     @Override
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mButton = (Button) findViewById(R.id.button);
+        Button mButton = (Button) findViewById(R.id.button);
         mTextView = (TextView) findViewById(R.id.textView);
         mEditText = (EditText) findViewById(R.id.editText);
 
@@ -30,9 +29,8 @@ public class MainActivity extends AppCompatActivity {
                 if (mEditText.getText().toString().equals("")) {
                     mEditText.setText("");
                 } else {
-
-                    myNumber = 11;
-                    String wordFormNumber = mEditText.getText().toString();
+                    long myNumber =11;
+                    String wordFormNumber = mEditText.getText().toString().toLowerCase();
                     char firstChar = wordFormNumber.charAt(0);
                     char secondChar = wordFormNumber.charAt(1);
 
@@ -44,16 +42,14 @@ public class MainActivity extends AppCompatActivity {
                         case 't':
                             if (secondChar == 'w') {
                                 myNumber = 2;
-                                break;
                             }
                             if (secondChar == 'h') {
                                 myNumber = 3;
-                                break;
                             }
                             if (secondChar == 'e') {
                                 myNumber = 10;
-                                break;
                             }
+                            break;
 
 
                         /*switch (secondChar) {
@@ -74,11 +70,9 @@ public class MainActivity extends AppCompatActivity {
                         case 'f':
                             if (secondChar == 'o') {
                                 myNumber = 4;
-                                break;
                             }
                             if (secondChar == 'i') {
                                 myNumber = 5;
-                                break;
                             }
                             break;
 
@@ -95,11 +89,9 @@ public class MainActivity extends AppCompatActivity {
                         case 's':
                             if (secondChar == 'i') {
                                 myNumber = 6;
-                                break;
                             }
                             if (secondChar == 'e') {
                                 myNumber = 7;
-                                break;
                             }
                             break;
 
@@ -120,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         default:
                             myNumber = 11;
-                            break;
                     }
 
                     if (myNumber != 11) {
