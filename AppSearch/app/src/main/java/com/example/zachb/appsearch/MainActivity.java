@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
 
-                apiService.getResult(c)
+                
 
 
                /* MyApiEndpointInterface apiService =
