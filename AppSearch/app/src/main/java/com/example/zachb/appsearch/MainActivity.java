@@ -1,26 +1,32 @@
 package com.example.zachb.appsearch;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.zachb.appsearch.models.RelatedTopic;
 import com.example.zachb.appsearch.models.User;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,10 +34,14 @@ public class MainActivity extends AppCompatActivity {
     Button mButton;
     EditText mEditText;
     TextView mResultsView;
-    final String API_INITIAL = "https://api.duckduckgo.com/q=";
-    final String API_FINAL = "&format=json/";
+    final String API_INITIAL = "https://api.duckduckgo.com/?q=";
+    final String API_FINAL = "&format=json";
     String searchText;
-    String apiComplete = (API_INITIAL + searchText + API_FINAL);
+    String apiComplete;
+    final String TAG = "API Info";
+    RelatedTopic mRelatedTopic;
+    User mUser;
+    ArrayList<String> listData = new ArrayList<>();
 
 
 
@@ -41,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mResultsView = (TextView) findViewById(R.id.resultsView);
+        mResultsView.setMovementMethod(new ScrollingMovementMethod());
         mEditText = (EditText) findViewById(R.id.editText);
         mButton = (Button) findViewById(R.id.button);
 
@@ -48,163 +59,95 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 searchText = mEditText.getText().toString();
+                apiComplete = (API_INITIAL + searchText + API_FINAL);
+                if (isNetworkAvailible()) {
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(apiComplete)
+                            .build();
 
-               MyApiEndpointInterface apiService = retrofit.create(MyApiEndpointInterface.class);
+                    Call call = client.newCall(request);
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                        }
 
-                
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            try {
+                                String jsonData = response.body().string();
+                                Log.v(TAG, jsonData);
+                                if (response.isSuccessful()) {
+                                    mUser = getUserHeading(jsonData);
+                                } else {
+                                    alertUserAboutError();
+                                }
+                            } catch (IOException e) {
+                                Log.e(TAG, "Exception caught: ", e);
+                            } catch (JSONException e) {
+                                Log.e(TAG, "Exception caught: ", e);
+                            }
+                            MainActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        for (int j =0; j<listData.size(); j++) {
+                                            mResultsView.append("\n" + listData.get(j));
 
+                                        }
+                                    }catch (Exception e) {
+                                        Log.e(TAG, "Exception caught", e);
+                                    }
+                                }
+                            });
 
-               /* MyApiEndpointInterface apiService =
-                        retrofit.create(MyApiEndpointInterface.class);
-                String result = "url";
-                Call<User> call = apiService.getResult(result);
-                call.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-
-                        User user = response.body();
-                        System.out.println(user.toString());
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-
-                    }
-                });*/
-
-
-               // new RetrieveFeedTask().execute();
+                        }
+                    });
+                }
             }
         });
 
-
-
     }
 
+    private User getUserHeading(String jsonData) throws JSONException{
+        JSONObject resultsObject = new JSONObject(jsonData);
 
-    Gson gson = new GsonBuilder()
-            .setDateFormat("yyy-MM-dd'T'HH:mm:ssZ")
-            .create();
+        User newUser = new User();
+        newUser.setHeading(resultsObject.getString("Heading"));
+        newUser.setAbstractURL(resultsObject.getString("AbstractURL"));
+
+        JSONArray jArray = (JSONArray) resultsObject.get("RelatedTopics");
 
 
-
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(apiComplete)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build();
-
-    public interface MyApiEndpointInterface {
-        // Request method and URL specified in the annotation
-        // Callback for the parsed response is the last parameter
-
-        @GET("RelatedTopics/Text:")
-        void getResult(@Query("result") String result);
-
-        @GET("group/{id}/users")
-        Call<List<User>> groupList(@Path("id") int groupId, @Query("sort") String sort);
-
-        @POST("users/new")
-        Call<User> createUser(@Body User user);
+        if (jArray != null) {
+            for (int i = 0; i < jArray.length(); i++) {
+                String test = jArray.getString(i);
+                listData.add(test);
+            }
+        }
+        Log.i(TAG, "From JSON" + newUser);
+        return newUser;
     }
 
-   /* class RelatedTopics {
-        String result;
-        String icon;
-        String text;
-
-        public String getResult() {
-            return result;
+    private RelatedTopic getInfo(String listData) throws JSONException {
+        JSONArray infoObject = new JSONArray(listData);
+        RelatedTopic newTopic = new RelatedTopic();
+        for (int m = 0; m<listData.length(); m++) {
         }
-        public String getIcon() {
-            return icon;
-        }
-        public String getText() {
-            return text;
-        }
+        return null;
     }
 
-    public class DuckDuckGoResponses {
-        ArrayList<RelatedTopics> topics;
-
-        public DuckDuckGoResponses() {
-            topics = new ArrayList<>();
-        }
-
-
-
+    private boolean isNetworkAvailible() {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = manager.getActiveNetworkInfo();
+        boolean isAvailible = false;
+        if(info != null && info.isConnected()) {
+            isAvailible = true;
+        }return isAvailible;
     }
-    public static DuckDuckGoResponses parseJSON(String response) {
-        Gson gson = new GsonBuilder().create();
-        DuckDuckGoResponses duckDuckGoResponses = gson.fromJson(response, DuckDuckGoResponses.class);
-        return duckDuckGoResponses;
-    }*/
 
-
-
-   /* class RetrieveFeedTask extends AsyncTask<Void, Void, String> {
-
-        String searchText = mEditText.getText().toString();
-        protected void onPreExecute() {
-            mResultsView.setText("");
-
-        }
-
-        protected String doInBackground(Void... urls) {
-
-
-            try{
-                URL url = new URL(API_INITIAL + searchText + API_FINAL);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                try {
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                    StringBuilder stringBuilder = new StringBuilder();
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line).append("\n");
-                    }
-                    bufferedReader.close();
-                    return stringBuilder.toString();
-                }
-                finally {
-                    urlConnection.disconnect();
-                }
-            }
-            catch (Exception e) {
-                Log.e("Error", e.getMessage(), e);
-                return null;
-            }
-        }
-
-        protected void onPostExecute(String response) {
-            if(response == null) {
-                response = "THERE WAS AN ERROR";
-            }
-            Log.i("INFO", response);
-
-            RelatedTopics relatedTopics = gson.fromJson(response, RelatedTopics.class);
-            String test = relatedTopics.toString();
-            mResultsView.append(test); */
-
-
-           // mResultsView.setText(response);
-
-           /* try {
-                JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
-                String RelatedTopics = object.getString("RelatedTopics");
-                String Abstract = object.getString("Abstract");
-                String Result = object.getString("Results");
-
-            } catch (JSONException e){
-                e.printStackTrace();
-            }
-           */
-
-
-
-
-       // }
-   // }
-
-
-
+    private void alertUserAboutError() {
+        AlertDialogFragment dialog = new AlertDialogFragment();
+        dialog.show(getFragmentManager(), "error_dialog");
+    }
 }
