@@ -27,10 +27,18 @@
         android:layout_alignEnd="@+id/button"
         android:hint="Enter Search"/>
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="400dp"
-        android:id="@+id/resultsView"
-        android:layout_below="@+id/editText"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editText">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/textView"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
 </RelativeLayout>

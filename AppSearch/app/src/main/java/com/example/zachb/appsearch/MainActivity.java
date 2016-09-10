@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -36,12 +37,18 @@ public class MainActivity extends AppCompatActivity {
     TextView mResultsView;
     final String API_INITIAL = "https://api.duckduckgo.com/?q=";
     final String API_FINAL = "&format=json";
+    public static final String TAG_HEADING = "Heading";
+    public static final String TAG_ABSTRACT_URL ="abstractURL";
+    public static final String TAG_RELATED_TOPICS ="RelatedTopics";
     String searchText;
     String apiComplete;
     final String TAG = "API Info";
     RelatedTopic mRelatedTopic;
     User mUser;
-    ArrayList<String> listData = new ArrayList<>();
+    List<String> listData = new ArrayList<>();
+    //JSONArray listData = new JSONArray();
+    User newUser = new User();
+    RelatedTopic relatedTopic = new RelatedTopic();
 
 
 
@@ -50,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mResultsView = (TextView) findViewById(R.id.resultsView);
+        mResultsView = (TextView) findViewById(R.id.textView);
         mResultsView.setMovementMethod(new ScrollingMovementMethod());
         mEditText = (EditText) findViewById(R.id.editText);
         mButton = (Button) findViewById(R.id.button);
@@ -73,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onResponse(Call call, Response response) throws IOException {
+                        public void onResponse(Call call, final Response response) throws IOException {
                             try {
                                 String jsonData = response.body().string();
                                 Log.v(TAG, jsonData);
@@ -92,9 +99,14 @@ public class MainActivity extends AppCompatActivity {
                                 public void run() {
                                     try {
                                         for (int j =0; j<listData.size(); j++) {
-                                            mResultsView.append("\n" + listData.get(j));
-
+                                            mResultsView.append("\n\n\n\n\n\n\n" + listData.get(j));
+                                            //mResultsView.append("\n\n\n\n" + new);
+                                           // mResultsView.append(newUser.getHeading());
                                         }
+                                        Log.d(TAG, listData.toString());
+                                        //User test = new User();
+                                        //mResultsView.append("\n" + listData.toString());
+                                        //mResultsView.append("\n" + test.getRelatedTopics());
                                     }catch (Exception e) {
                                         Log.e(TAG, "Exception caught", e);
                                     }
@@ -112,30 +124,40 @@ public class MainActivity extends AppCompatActivity {
     private User getUserHeading(String jsonData) throws JSONException{
         JSONObject resultsObject = new JSONObject(jsonData);
 
-        User newUser = new User();
-        newUser.setHeading(resultsObject.getString("Heading"));
-        newUser.setAbstractURL(resultsObject.getString("AbstractURL"));
-
-        JSONArray jArray = (JSONArray) resultsObject.get("RelatedTopics");
+        newUser.setHeading(resultsObject.getString(TAG_HEADING));
+       // newUser.setAbstractURL(resultsObject.getString(TAG_ABSTRACT_URL));
+        JSONArray jArray = resultsObject.getJSONArray(TAG_RELATED_TOPICS);
 
 
         if (jArray != null) {
             for (int i = 0; i < jArray.length(); i++) {
-                String test = jArray.getString(i);
-                listData.add(test);
+                String testString;
+                //Log.d("TestingCrap", testString);
+                JSONObject test = jArray.getJSONObject(i);
+                String obArray = test.getString("Result");
+                //test = obArray.getJSONObject(i);
+                testString = test.getString("FirstURL");
+                Log.d("TestingURL: ",  obArray);
+                listData.add(obArray);
+                /*for(int y = 0; y<test.length(); y++) {
+                    JSONObject obTwo = obArray.getJSONObject(y);
+                    String test2 = obTwo.toString();
+                    listData.add(i, test2);
+                }
+                */
             }
         }
         Log.i(TAG, "From JSON" + newUser);
         return newUser;
     }
 
-    private RelatedTopic getInfo(String listData) throws JSONException {
+    /*private RelatedTopic getInfo(String listData) throws JSONException {
         JSONArray infoObject = new JSONArray(listData);
         RelatedTopic newTopic = new RelatedTopic();
         for (int m = 0; m<listData.length(); m++) {
         }
         return null;
-    }
+    }*/
 
     private boolean isNetworkAvailible() {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
