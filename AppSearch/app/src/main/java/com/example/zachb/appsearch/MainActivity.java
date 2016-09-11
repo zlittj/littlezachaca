@@ -1,18 +1,17 @@
 package com.example.zachb.appsearch;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.zachb.appsearch.models.RelatedTopic;
 import com.example.zachb.appsearch.models.User;
 
 import org.json.JSONArray;
@@ -21,7 +20,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -34,31 +32,24 @@ public class MainActivity extends AppCompatActivity {
 
     Button mButton;
     EditText mEditText;
-    TextView mResultsView;
     final String API_INITIAL = "https://api.duckduckgo.com/?q=";
-    final String API_FINAL = "&format=json";
-    public static final String TAG_HEADING = "Heading";
-    public static final String TAG_ABSTRACT_URL ="abstractURL";
+    final String API_FINAL = "&format=json&pretty=1";
     public static final String TAG_RELATED_TOPICS ="RelatedTopics";
+    public static final String RESULTS_MESSAGE = "com.example.zachb.appsearch.RESULTS";;
     String searchText;
     String apiComplete;
     final String TAG = "API Info";
-    RelatedTopic mRelatedTopic;
     User mUser;
-    List<String> listData = new ArrayList<>();
-    //JSONArray listData = new JSONArray();
+    public ArrayList<String> toOtherView = new ArrayList<>();
     User newUser = new User();
-    RelatedTopic relatedTopic = new RelatedTopic();
-
-
+    TextView newTextView;
+    char replaceSpace = ' ';
+    char newPlus = '+';
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mResultsView = (TextView) findViewById(R.id.textView);
-        mResultsView.setMovementMethod(new ScrollingMovementMethod());
         mEditText = (EditText) findViewById(R.id.editText);
         mButton = (Button) findViewById(R.id.button);
 
@@ -66,19 +57,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 searchText = mEditText.getText().toString();
+                if (searchText.contains(" ")){ searchText = searchText.replace(replaceSpace, newPlus );}
                 apiComplete = (API_INITIAL + searchText + API_FINAL);
                 if (isNetworkAvailible()) {
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
                             .url(apiComplete)
                             .build();
-
                     Call call = client.newCall(request);
                     call.enqueue(new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                         }
-
                         @Override
                         public void onResponse(Call call, final Response response) throws IOException {
                             try {
@@ -92,72 +82,41 @@ public class MainActivity extends AppCompatActivity {
                             } catch (IOException e) {
                                 Log.e(TAG, "Exception caught: ", e);
                             } catch (JSONException e) {
-                                Log.e(TAG, "Exception caught: ", e);
+                                e.printStackTrace();
                             }
-                            MainActivity.this.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        for (int j =0; j<listData.size(); j++) {
-                                            mResultsView.append("\n\n\n\n\n\n\n" + listData.get(j));
-                                            //mResultsView.append("\n\n\n\n" + new);
-                                           // mResultsView.append(newUser.getHeading());
-                                        }
-                                        Log.d(TAG, listData.toString());
-                                        //User test = new User();
-                                        //mResultsView.append("\n" + listData.toString());
-                                        //mResultsView.append("\n" + test.getRelatedTopics());
-                                    }catch (Exception e) {
-                                        Log.e(TAG, "Exception caught", e);
-                                    }
-                                }
-                            });
-
                         }
                     });
                 }
             }
         });
-
     }
 
     private User getUserHeading(String jsonData) throws JSONException{
         JSONObject resultsObject = new JSONObject(jsonData);
-
-        newUser.setHeading(resultsObject.getString(TAG_HEADING));
-       // newUser.setAbstractURL(resultsObject.getString(TAG_ABSTRACT_URL));
         JSONArray jArray = resultsObject.getJSONArray(TAG_RELATED_TOPICS);
-
-
-        if (jArray != null) {
-            for (int i = 0; i < jArray.length(); i++) {
-                String testString;
-                //Log.d("TestingCrap", testString);
+            for (int i = 0; i <3; i++) {
                 JSONObject test = jArray.getJSONObject(i);
-                String obArray = test.getString("Result");
-                //test = obArray.getJSONObject(i);
-                testString = test.getString("FirstURL");
-                Log.d("TestingURL: ",  obArray);
-                listData.add(obArray);
-                /*for(int y = 0; y<test.length(); y++) {
-                    JSONObject obTwo = obArray.getJSONObject(y);
-                    String test2 = obTwo.toString();
-                    listData.add(i, test2);
-                }
-                */
+                //String jsonResultString = test.getString("Result");
+                //String jsonIconString = test.getString("Icon");
+                String jsonFirstURLString = test.getString("FirstURL");
+                String jsonTextString = test.getString("Text");
+                //Log.d("TestingURL: ",  jsonResultString);
+                //toOtherView.add(jsonResultString);
+                //toOtherView.add(jsonIconString);
+                toOtherView.add(jsonFirstURLString);
+                toOtherView.add(jsonTextString);
             }
-        }
-        Log.i(TAG, "From JSON" + newUser);
+        goToResults();
         return newUser;
     }
 
-    /*private RelatedTopic getInfo(String listData) throws JSONException {
-        JSONArray infoObject = new JSONArray(listData);
-        RelatedTopic newTopic = new RelatedTopic();
-        for (int m = 0; m<listData.length(); m++) {
-        }
-        return null;
-    }*/
+    public void goToResults() {
+        newTextView = (TextView) findViewById(R.id.textView);
+        Intent intent = new Intent(this, ResultsActivity.class);
+        intent.putStringArrayListExtra(RESULTS_MESSAGE, toOtherView);
+        startActivity(intent);
+
+    }
 
     private boolean isNetworkAvailible() {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
