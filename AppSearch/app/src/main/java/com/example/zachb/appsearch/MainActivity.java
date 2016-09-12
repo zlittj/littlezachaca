@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button mButton;
     EditText mEditText;
     final String API_INITIAL = "https://api.duckduckgo.com/?q=";
-    final String API_FINAL = "&format=json&pretty=1";
+    final String API_FINAL = "&format=json&RelatedTopic&Result";
     public static final String TAG_RELATED_TOPICS ="RelatedTopics";
     public static final String RESULTS_MESSAGE = "com.example.zachb.appsearch.RESULTS";;
     String searchText;
@@ -93,8 +93,11 @@ public class MainActivity extends AppCompatActivity {
 
     private User getUserHeading(String jsonData) throws JSONException{
         JSONObject resultsObject = new JSONObject(jsonData);
+        //newUser.setHeading(resultsObject.getString("Heading"));
+        //if (newUser.getHeading() != null) {
+        //    Toast.makeText(this, "Enter a Valid Search", Toast.LENGTH_LONG).show();}
         JSONArray jArray = resultsObject.getJSONArray(TAG_RELATED_TOPICS);
-            for (int i = 0; i <3; i++) {
+            for (int i = 0; i <jArray.length(); i++) {
                 JSONObject test = jArray.getJSONObject(i);
                 //String jsonResultString = test.getString("Result");
                 //String jsonIconString = test.getString("Icon");
