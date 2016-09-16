@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button mButtonRepeat;
     TextView mTextNameDisplay;
     ProgressBar mProgressBar;
-    private static final String SERVER_URL = "https://class-checker.firebaseio.com/";
+
     private DatabaseReference mDataBase;
     String mName = "zach_little";
     private static final String HELP = "_help";
