@@ -9,15 +9,22 @@ import android.support.v7.app.AlertDialog;
 
 public class AlertHelpDialog extends DialogFragment {
 
-    Name mHelpMeName;
+    public String getHelpName() {
+        return mHelpName;
+    }
+
+    public void setHelpName(String helpName) {
+        mHelpName = helpName;
+    }
+
+    String mHelpName;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class because this dialog has a simple UI
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        // Dialog will have "Make a selection" as the title
-        builder.setMessage("Help!!!!!!!!!!!!" + mHelpMeName.getName())
+        builder.setMessage("Help!!!!!!!!!!!!" + "         " +mHelpName)
                 // An OK button that does nothing
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -30,4 +37,6 @@ public class AlertHelpDialog extends DialogFragment {
         return builder.create();
 
     }// End onCreateDialog
+
+
 }

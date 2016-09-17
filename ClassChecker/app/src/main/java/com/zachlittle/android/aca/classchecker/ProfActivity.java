@@ -22,6 +22,7 @@ public class ProfActivity extends AppCompatActivity{
     private int mProgressStatus = 0;
     private Handler mHandler = new Handler();
     */
+    public String helpName;
     ImageButton mImageButtonProf;
     String[] names = {
             "Andrew", "Carson","Chandler", "Chris", "DanielA", "DanielB", "Diane", "Gabe", "Jackson", "Karen", "Micheal", "Robin", "Teresa", "Zidan", "zach_little"
@@ -49,38 +50,39 @@ public class ProfActivity extends AppCompatActivity{
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Log.i("onChildChanged", "i'm in the method");
-                mDatabase = FirebaseDatabase.getInstance().getReference();
+                Log.i("onChildChanged", dataSnapshot.getKey());
+                Log.i("onChildChanged", dataSnapshot.getValue().toString());
+                String key = dataSnapshot.getKey();
+                String value = dataSnapshot.getValue().toString();
 
-                String tester = mDatabase.child("anyone_repeat").getKey();
-                   if (tester.equals("true")) {
+                   if (key.equals("anyone_repeat") && value.equals("true")) {
                        Log.i("tagger", "setting anyone");
                        //alert David to repeat himself
                        AlertRepeatDialog myDialog = new AlertRepeatDialog();
                        myDialog.show(getFragmentManager(), "");
-
                        //reset the value of repeat
                        mDatabase.child("anyone_repeat").setValue("false");
                    }
 
                 for (int i=0; i<names.length; i++){
-                    if (dataSnapshot.child(names[i]).getValue() == "true"){
+                    if (key.equals(names[i]) && value.equals("true")){
                         nameValues[i] = true;
+                        System.out.println(nameValues[i] + names[i]);
                         //this next code adds values to my progress bar
                        // mProgressBar.incrementProgressBy(1);
-                        keeper.add(i, names[i]);
+                        keeper.add(names[i]);
                         //this next code pops up a screen to notify david that all are done
                         if (keeper.size() == 15){
                             //pop up something here
+                            keeper.clear();
                             AlertFinishedDialog myDialog = new AlertFinishedDialog();
                             myDialog.show(getFragmentManager(), "");
                         }
                     }//end of if loop
-                    if (dataSnapshot.child(names[i]+"_help").getValue() == "true"){
-                        Log.i("onChildChanged", "help");
-                        Name newName = new Name();
-                        newName.setName(names[i]);
+                    if (key.equals(names[i]+ "_help") && value.equals("true")){
+                        Log.i("onChildChanged", names[i]);
                         AlertHelpDialog myDialog = new AlertHelpDialog();
+                        myDialog.setHelpName(names[i]);
                         myDialog.show(getFragmentManager(), "");
                     }
                 }//end of for loop for value changes
@@ -120,5 +122,8 @@ public class ProfActivity extends AppCompatActivity{
         });
 
 
+    }
+    public String getHelpName(){
+        return helpName;
     }
 }

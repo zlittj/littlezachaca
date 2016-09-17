@@ -5,4 +5,7 @@
     <string name="repeat">Please Repeat</string>
     <string name="textview">TextView</string>
     <string name="action_settings">Name</string>
+    <string name="repeat_good">Repeat</string>
+    <string name="i_m_finished">I\'m Finished!</string>
+    <string name="helper">HELP!</string>
 </resources>
