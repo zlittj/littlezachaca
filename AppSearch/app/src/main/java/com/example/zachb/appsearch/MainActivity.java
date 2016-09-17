@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToResults() {
-        newTextView = (TextView) findViewById(R.id.textView);
+
         Intent intent = new Intent(this, ResultsActivity.class);
         intent.putStringArrayListExtra(RESULTS_MESSAGE, toOtherView);
         startActivity(intent);

@@ -2,8 +2,10 @@ package com.zachlittle.android.aca.classchecker;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,14 +14,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button mButtonFinished;
-    Button mButtonHelp;
-    Button mButtonRepeat;
+    ImageButton mButtonFinished;
+    ImageButton mButtonHelp;
+    ImageButton mButtonRepeat;
     TextView mTextNameDisplay;
     ProgressBar mProgressBar;
 
     private DatabaseReference mDataBase;
-    String mName = "zach_little";
+    Name mNewName;
     private static final String HELP = "_help";
     private static final String ANYONE_REPEAT = "anyone_repeat";
 
@@ -28,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mButtonFinished = (Button) findViewById(R.id.buttonFinished);
-        mButtonHelp = (Button) findViewById(R.id.buttonHelp);
-        mButtonRepeat =(Button) findViewById(R.id.buttonRepeat);
+        mButtonFinished = (ImageButton) findViewById(R.id.imageButtonFinished);
+        mButtonHelp = (ImageButton) findViewById(R.id.imageButtonHelp);
+        mButtonRepeat =(ImageButton) findViewById(R.id.imageButtonRepeat);
         mTextNameDisplay = (TextView) findViewById(R.id.textView);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Send some info over the interwebs to say you're done
                 mDataBase = FirebaseDatabase.getInstance().getReference();
-                mDataBase.child(mName).setValue(true);
+                mDataBase.child(mNewName.getName()).setValue(true);
             }
         });
 
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //send info on the interwebs that notifies prof that this person needs help
                 mDataBase = FirebaseDatabase.getInstance().getReference();
-                mDataBase.child(mName + HELP).setValue(true);
+                mDataBase.child(mNewName.getName() + HELP).setValue(true);
             }
         });
 
@@ -62,11 +64,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Use a get text from the menu to insert the name of the user in here
-        mTextNameDisplay.setText(mName);
+
 
         //create a progress bar that fills up as people respond. this will require a get http request, it may be worth leaving
         //blank for now and adding it in later if i want it
         mProgressBar.setVisibility(View.INVISIBLE);
 
+    }//end of oncreate
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            //name entry from menuname java class
+            MenuNameEntry nameEntry = new MenuNameEntry();
+            nameEntry.show(getFragmentManager(), "");
+            return true;
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void createNewName(Name n){
+        mNewName = n;
+    }
+
+
+
 }
