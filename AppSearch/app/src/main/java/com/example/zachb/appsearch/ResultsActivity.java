@@ -1,12 +1,14 @@
 package com.example.zachb.appsearch;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
-import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 public class ResultsActivity extends AppCompatActivity{
 
     Button backButton;
-    TextView mTextView;
+    ArrayList<String> message = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +33,11 @@ public class ResultsActivity extends AppCompatActivity{
         });
 
         Intent intent = getIntent();
-        mTextView = (TextView) findViewById(R.id.textView);
-        mTextView.setMovementMethod(new ScrollingMovementMethod());
-        mTextView.setMovementMethod(LinkMovementMethod.getInstance());
-        ArrayList<String> message = intent.getStringArrayListExtra(MainActivity.RESULTS_MESSAGE);
+
+        message = intent.getStringArrayListExtra(MainActivity.RESULTS_MESSAGE);
+
+        //about to do some formating so that i can populate a ListView
+        /*
         for(int i=0; i<message.size(); i++){
             mTextView.append("\n");
             mTextView.append(Html.fromHtml("<a href=" + message.get(i) + ">" + message.get(i) + "/a>"));
@@ -42,11 +45,64 @@ public class ResultsActivity extends AppCompatActivity{
             i++;
             mTextView.append(message.get(i));
             mTextView.append("\n\n\n\n\n");
-        }
+        }*/
     }
 
     public void onBackClick(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
+
+    }// end of my oncreate
+
+    public class LinksAdapter extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
+            if (view == null) {
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.listlink, parent, false);
+            }//end of if
+
+            TextView txtTitle = (TextView) view.findViewById(R.id.txtTitle);
+            TextView txtDescription = (TextView) view.findViewById(R.id.txtDescription);
+
+            // Add the text to the heading and description
+            for (int i = 0; i < message.size(); i++) {
+                txtTitle.append(Html.fromHtml("<a href=" + message.get(i) + ">" + message.get(i) + "/a>"));
+                i++;
+                txtDescription.append(message.get(i));
+            }//end of for
+            return view;
+        }//end of getView
+    }// end of LinksAdapter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

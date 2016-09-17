@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zachb.appsearch.models.User;
 
@@ -94,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
     private User getUserHeading(String jsonData) throws JSONException{
         JSONObject resultsObject = new JSONObject(jsonData);
         //newUser.setHeading(resultsObject.getString("Heading"));
-        //if (newUser.getHeading() != null) {
-        //    Toast.makeText(this, "Enter a Valid Search", Toast.LENGTH_LONG).show();}
+        if (newUser.getHeading() != null) {
+        Toast.makeText(this, "Enter a Valid Search", Toast.LENGTH_LONG).show();}
         JSONArray jArray = resultsObject.getJSONArray(TAG_RELATED_TOPICS);
             for (int i = 0; i <jArray.length(); i++) {
                 JSONObject test = jArray.getJSONObject(i);

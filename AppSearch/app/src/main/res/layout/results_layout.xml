@@ -16,15 +16,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/textView"
-            android:layout_gravity="center_vertical"
-            android:scrollIndicators="right"
-            android:nestedScrollingEnabled="true"
-            android:maxLines="1000"
-            android:autoLink="web"
-            android:linksClickable="true"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 </LinearLayout>
