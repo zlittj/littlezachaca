@@ -10,16 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.zachlittle.android.aca.classchecker.MainActivity"
     android:background="@color/colorPrimary"
+
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    >
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,16 +33,6 @@
         android:layout_width="100dp" />
 
     <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/finished_button"
-        android:id="@+id/imageButtonFinished"
-        android:layout_marginTop="70dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitXY" />
-
-    <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:srcCompat="@drawable/help_button"
@@ -64,33 +47,85 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
         android:text="@string/repeat_good"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2"
-        android:layout_marginLeft="18dp"
-        android:layout_marginStart="18dp" />
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_alignTop="@id/imageButtonRepeat"
+        android:layout_alignRight="@id/imageButtonRepeat"
+        android:layout_marginRight="27dp"
+        android:layout_marginTop="43dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:id="@+id/textView3"
+        android:text="@string/helper"
+        android:layout_alignParentBottom="false"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignBottom="@id/imageButtonHelp"
+        android:layout_alignLeft="@id/imageButtonHelp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginBottom="40dp"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/finished_button"
+        android:id="@+id/imageButtonFinished"
+        android:layout_marginTop="70dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/textView2"
         android:text="@string/i_m_finished"
         android:textSize="30sp"
-        android:layout_alignTop="@+id/imageButtonFinished"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="25dp"
-        android:layout_marginEnd="25dp"
-        android:id="@+id/textView3"
-        android:text="@string/helper"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/textView2"
-        android:layout_toStartOf="@+id/textView2"
-        android:layout_marginBottom="41dp" />
+        android:layout_marginTop="15dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="false"/>
 
 </RelativeLayout>
