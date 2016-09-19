@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.zachb.appsearch.models.RelatedTopic;
 import com.example.zachb.appsearch.models.User;
 
 import org.json.JSONArray;
@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -34,14 +35,16 @@ public class MainActivity extends AppCompatActivity {
     Button mButton;
     EditText mEditText;
     final String API_INITIAL = "https://api.duckduckgo.com/?q=";
-    final String API_FINAL = "&format=json&RelatedTopic&Result";
+    final String API_FINAL = "&format=json&ia=list";
     public static final String TAG_RELATED_TOPICS ="RelatedTopics";
     public static final String RESULTS_MESSAGE = "com.example.zachb.appsearch.RESULTS";;
     String searchText;
     String apiComplete;
     final String TAG = "API Info";
     User mUser;
-    public ArrayList<String> toOtherView = new ArrayList<>();
+    RelatedTopic mRelatedTopic;
+    public List<RelatedTopic> toOtherView = new ArrayList<>();
+    private List<String> toView = new ArrayList<>();
     User newUser = new User();
     TextView newTextView;
     char replaceSpace = ' ';
@@ -95,21 +98,47 @@ public class MainActivity extends AppCompatActivity {
     private User getUserHeading(String jsonData) throws JSONException{
         JSONObject resultsObject = new JSONObject(jsonData);
         //newUser.setHeading(resultsObject.getString("Heading"));
-        if (newUser.getHeading() != null) {
-        Toast.makeText(this, "Enter a Valid Search", Toast.LENGTH_LONG).show();}
+
+//        if (newUser.getHeading() != null) {
+//        Toast.makeText(this, "Enter a Valid Search", Toast.LENGTH_LONG).show();}
         JSONArray jArray = resultsObject.getJSONArray(TAG_RELATED_TOPICS);
+
+
             for (int i = 0; i <jArray.length(); i++) {
+                Log.i("testing12", jArray.getString(i));
                 JSONObject test = jArray.getJSONObject(i);
+
+                if (i>2) {
+                    JSONArray jTwoArray = test.getJSONArray("Topics");
+                    for (int j = 0; j < 1; j++) {
+                        Log.i(TAG, "in dat oder array");
+                        JSONObject topics = jTwoArray.getJSONObject(j);
+                        String jsonTopicsResult = topics.getString("FirstURL");
+
+                        String jsonTopicsText = topics.getString("Text");
+                        Log.i(TAG, jsonTopicsResult + jsonTopicsText);
+                        toView.add(jsonTopicsResult);
+                        toView.add(jsonTopicsText);
+                    }//end of for loop
+                }//end of if blcok
+
                 //String jsonResultString = test.getString("Result");
                 //String jsonIconString = test.getString("Icon");
-                String jsonFirstURLString = test.getString("FirstURL");
-                String jsonTextString = test.getString("Text");
-                //Log.d("TestingURL: ",  jsonResultString);
-                //toOtherView.add(jsonResultString);
-                //toOtherView.add(jsonIconString);
-                toOtherView.add(jsonFirstURLString);
-                toOtherView.add(jsonTextString);
+                if (i<3){
+                    Log.i(TAG, "duck");
+                    String jsonFirstURLString = test.getString("FirstURL");
+                    Log.i("checkingFIR", jsonFirstURLString);
+                    String jsonTextString = test.getString("Text");
+                    //Log.d("TestingURL: ",  jsonResultString);
+                    //toOtherView.add(jsonResultString);
+                    //toOtherView.add(jsonIconString);
+                    mRelatedTopic.setFirstURL(jsonFirstURLString);
+                    mRelatedTopic.setText(jsonTextString);
+                    toOtherView.set(i, mRelatedTopic);
+                }
+
             }
+        newUser.setRelatedTopics(toOtherView);
         goToResults();
         return newUser;
     }
@@ -117,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
     public void goToResults() {
 
         Intent intent = new Intent(this, ResultsActivity.class);
-        intent.putStringArrayListExtra(RESULTS_MESSAGE, toOtherView);
         startActivity(intent);
 
     }
