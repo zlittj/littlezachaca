@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,9 +24,9 @@ public class ResultsActivity extends AppCompatActivity{
 
     Button backButton;
     ArrayList<String> message = new ArrayList<>();
-    private LinksAdapter mLinksAdapter;
+    private ArrayAdapter mLinksAdapter;
     User tempUser = new User();
-    RelatedTopic tempTopics = new RelatedTopic();
+
     List<RelatedTopic> tempList = new ArrayList<>();
     View view;
 
@@ -35,13 +35,10 @@ public class ResultsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.results_layout);
         ListView listView = (ListView) findViewById(R.id.listView);
-        mLinksAdapter = new LinksAdapter();
-
         tempList = tempUser.getRelatedTopics();
-        for(int i=0; i<2; i++){
-            Log.i("tag", "infor floop");
-            mLinksAdapter.addToView(tempList.get(i));
-        }
+
+        mLinksAdapter = new ArrayAdapter(this, R.layout.listlink, tempList);
+
         listView.setAdapter(mLinksAdapter);
 
         backButton = (Button) findViewById(R.id.button2);
@@ -60,8 +57,33 @@ public class ResultsActivity extends AppCompatActivity{
 
     }// end of my oncreate
 
-    public class LinksAdapter extends BaseAdapter {
-        List<RelatedTopic> tempList = new ArrayList<>();
+    public class ListAdapter extends ArrayAdapter {
+
+
+        public ListAdapter(Context context, int resource) {
+            super(context, resource);
+        }
+
+        public ListAdapter(Context context, int resource, int textViewResourceId) {
+            super(context, resource, textViewResourceId);
+        }
+
+        public ListAdapter(Context context, int resource, Object[] objects) {
+            super(context, resource, objects);
+        }
+
+        public ListAdapter(Context context, int resource, int textViewResourceId, Object[] objects) {
+            super(context, resource, textViewResourceId, objects);
+        }
+
+        public ListAdapter(Context context, int resource, List objects) {
+            super(context, resource, objects);
+        }
+
+        public ListAdapter(Context context, int resource, int textViewResourceId, List objects) {
+            super(context, resource, textViewResourceId, objects);
+        }
+
         @Override
         public int getCount() {
             return 0;
@@ -91,7 +113,7 @@ public class ResultsActivity extends AppCompatActivity{
 
             // Add the text to the heading and description
 
-
+            RelatedTopic tempTopics;
             tempTopics = tempList.get(position);
             txtTitle.setText(tempTopics.getFirstURL());
 

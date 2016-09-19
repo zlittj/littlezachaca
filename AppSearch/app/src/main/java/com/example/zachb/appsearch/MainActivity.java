@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         newUser.setRelatedTopics(toOtherView);
+
         goToResults();
         return newUser;
     }
