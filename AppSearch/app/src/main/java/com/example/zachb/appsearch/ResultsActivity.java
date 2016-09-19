@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.example.zachb.appsearch.models.RelatedTopic;
 import com.example.zachb.appsearch.models.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ResultsActivity extends AppCompatActivity{
@@ -23,6 +25,10 @@ public class ResultsActivity extends AppCompatActivity{
     Button backButton;
     ArrayList<String> message = new ArrayList<>();
     private LinksAdapter mLinksAdapter;
+    User tempUser = new User();
+    RelatedTopic tempTopics = new RelatedTopic();
+    List<RelatedTopic> tempList = new ArrayList<>();
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,14 @@ public class ResultsActivity extends AppCompatActivity{
         setContentView(R.layout.results_layout);
         ListView listView = (ListView) findViewById(R.id.listView);
         mLinksAdapter = new LinksAdapter();
+
+        tempList = tempUser.getRelatedTopics();
+        for(int i=0; i<2; i++){
+            Log.i("tag", "infor floop");
+            mLinksAdapter.addToView(tempList.get(i));
+        }
         listView.setAdapter(mLinksAdapter);
+
         backButton = (Button) findViewById(R.id.button2);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,20 +52,6 @@ public class ResultsActivity extends AppCompatActivity{
             }
         });
 
-
-
-        
-
-        //about to do some formating so that i can populate a ListView
-        /*
-        for(int i=0; i<message.size(); i++){
-            mTextView.append("\n");
-            mTextView.append(Html.fromHtml("<a href=" + message.get(i) + ">" + message.get(i) + "/a>"));
-            mTextView.append("\n\n");
-            i++;
-            mTextView.append(message.get(i));
-            mTextView.append("\n\n\n\n\n");
-        }*/
     }
 
     public void onBackClick(){
@@ -62,6 +61,7 @@ public class ResultsActivity extends AppCompatActivity{
     }// end of my oncreate
 
     public class LinksAdapter extends BaseAdapter {
+        List<RelatedTopic> tempList = new ArrayList<>();
         @Override
         public int getCount() {
             return 0;
@@ -79,8 +79,8 @@ public class ResultsActivity extends AppCompatActivity{
 
         @Override
         public View getView(int position, View view, ViewGroup parent) {
-            User tempUser = new User();
-            RelatedTopic tempTopics = new RelatedTopic();
+            Log.i("In Results", "insidegetView");
+
             if (view == null) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater.inflate(R.layout.listlink, parent, false);
@@ -90,11 +90,20 @@ public class ResultsActivity extends AppCompatActivity{
             TextView txtDescription = (TextView) view.findViewById(R.id.txtDescription);
 
             // Add the text to the heading and description
+
+
+            tempTopics = tempList.get(position);
             txtTitle.setText(tempTopics.getFirstURL());
-            txtDescription.setText(tempTopics.getText());
+
+
 
             return view;
         }//end of getView
+        public void addToView(RelatedTopic relate){
+            tempList.add(relate);
+            notifyDataSetChanged();
+        }
+
     }// end of LinksAdapter
 
 

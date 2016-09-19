@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     String apiComplete;
     final String TAG = "API Info";
     User mUser;
-    RelatedTopic mRelatedTopic;
+    RelatedTopic mRelatedTopic = new RelatedTopic();
     public List<RelatedTopic> toOtherView = new ArrayList<>();
     private List<String> toView = new ArrayList<>();
     User newUser = new User();
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     //toOtherView.add(jsonIconString);
                     mRelatedTopic.setFirstURL(jsonFirstURLString);
                     mRelatedTopic.setText(jsonTextString);
-                    toOtherView.set(i, mRelatedTopic);
+                    toOtherView.add(i, mRelatedTopic);
                 }
 
             }
