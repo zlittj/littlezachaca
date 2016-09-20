@@ -12,68 +12,71 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.zachlittle.android.aca.hangman.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    >
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/left_leg"
+        android:layout_marginTop="279dp"
+        android:id="@+id/imageViewLeftLeg"
+        android:layout_marginStart="169dp"
+        android:layout_marginLeft="169dp"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/right_arm"
+        android:layout_marginTop="190dp"
+        android:layout_marginStart="216dp"
+        android:id="@+id/imageViewRightArm"
+        android:layout_marginLeft="216dp"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/right_leg"
+        android:id="@+id/imageViewRightLeg"
+        android:layout_marginTop="278dp"
+        android:layout_marginStart="218dp"
+        android:layout_marginLeft="218dp"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/left_arm"
+        android:id="@+id/imageViewLeftArm"
+        android:layout_marginTop="190dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginLeft="170dp"/>
 
     <ImageView
         android:layout_width="60dp"
-        android:layout_height="80dp"
-        app:srcCompat="@drawable/left_leg"
-        android:layout_marginTop="370dp"
-        android:id="@+id/imageViewLeftLeg"
-        android:layout_marginStart="155dp"
-        android:layout_marginLeft="155dp"/>
-
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/right_arm"
-        android:layout_marginTop="230dp"
-        android:layout_marginStart="215dp"
-        android:id="@+id/imageViewRightArm"
-        android:layout_marginLeft="215dp"/>
-
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="80dp"
-        app:srcCompat="@drawable/righ_leg"
-        android:id="@+id/imageViewRightLeg"
-        android:layout_marginTop="365dp"
-        android:layout_marginStart="215dp"
-        android:layout_marginLeft="215dp"/>
-
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/left_arm"
-        android:id="@+id/imageViewLeftArm"
-        android:layout_marginTop="230dp"
-        android:layout_marginStart="155dp"
-        android:layout_marginLeft="155dp"/>
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         app:srcCompat="@drawable/head"
         android:id="@+id/imageViewHead"
-        android:layout_marginTop="153dp"
-        android:layout_marginLeft="160dp"/>
+        android:layout_marginTop="136dp"
+        android:layout_marginLeft="180dp"
+        android:layout_marginStart="180dp"/>
 
     <ImageView
-        android:layout_width="100dp"
+        android:layout_width="50dp"
         app:srcCompat="@drawable/body"
         android:id="@+id/imageViewBody"
-        android:layout_height="150dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginLeft="160dp"/>
+        android:layout_height="100dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginStart="190dp"/>
 
     <ImageView
-        android:layout_height="400dp"
+        android:layout_height="250dp"
         app:srcCompat="@drawable/gallows"
         android:id="@+id/imageViewGallows"
         android:layout_width="280dp"
 
         android:layout_marginTop="100dp"
-        android:layout_marginStart="-40dp"
+        android:layout_marginStart="0dp"
         android:layout_marginLeft="1dp"/>
 
     <LinearLayout
@@ -82,21 +85,302 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/linLayout"
-        android:layout_height="62dp">
+        android:gravity="center_vertical|center_horizontal|center"
+        android:layout_height="42dp">
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linLayVert"
-        android:orientation="vertical"
-        android:layout_width="60dp"
-        android:layout_height="300dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="100dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/textViewCharsBad"/>
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:layout_marginTop="46dp"
+        android:id="@+id/linLayoutTwo">
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relLayoutButtons"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@+id/imageViewGallows"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:text="A"
+            android:textSize="10sp"
+            android:id="@+id/buttonA"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:onClick="myClickChecker"
+            android:gravity="center_vertical|center_horizontal|center"/>
+
+        <Button
+            android:text="b"
+            android:textSize="10sp"
+            android:id="@+id/buttonB"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:onClick="myClickChecker"/>
+
+
+
+        <Button
+            android:text="c"
+            android:textSize="10sp"
+            android:id="@+id/buttonC"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="d"
+            android:textSize="12sp"
+            android:id="@+id/buttonD"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginLeft="105dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="e"
+            android:textSize="12sp"
+            android:id="@+id/buttonE"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="f"
+            android:textSize="12sp"
+            android:id="@+id/buttonF"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="175dp"
+            android:layout_marginLeft="175dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="g"
+            android:textSize="12sp"
+            android:id="@+id/buttonG"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginLeft="210dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="h"
+            android:textSize="10sp"
+            android:id="@+id/buttonH"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="245dp"
+            android:layout_marginLeft="245dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="i"
+            android:textSize="12sp"
+            android:id="@+id/buttonI"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="280dp"
+            android:layout_marginLeft="280dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="j"
+            android:textSize="12sp"
+            android:id="@+id/buttonJ"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="41dp"
+            android:onClick="myClickChecker"
+            />
+
+        <Button
+            android:text="k"
+            android:textSize="10sp"
+            android:id="@+id/buttonK"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="l"
+            android:textSize="12sp"
+            android:id="@+id/buttonL"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="m"
+            android:textSize="8sp"
+            android:id="@+id/buttonM"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginLeft="105dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="n"
+            android:textSize="12sp"
+            android:id="@+id/buttonN"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="o"
+            android:textSize="10sp"
+            android:id="@+id/buttonO"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginStart="175dp"
+            android:layout_marginLeft="175dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="p"
+            android:textSize="10sp"
+            android:id="@+id/buttonP"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginLeft="210dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="q"
+            android:textSize="10sp"
+            android:id="@+id/buttonQ"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginStart="245dp"
+            android:layout_marginLeft="245dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="r"
+            android:textSize="10sp"
+            android:id="@+id/buttonR"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginStart="280dp"
+            android:layout_marginLeft="280dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="s"
+            android:textSize="10sp"
+            android:id="@+id/buttonS"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="81dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="t"
+            android:textSize="12sp"
+            android:id="@+id/buttonT"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="u"
+            android:textSize="11sp"
+            android:id="@+id/buttonU"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="v"
+            android:textSize="10sp"
+            android:id="@+id/buttonV"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginLeft="105dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="w"
+            android:textSize="8sp"
+            android:id="@+id/buttonW"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="x"
+            android:textSize="11sp"
+            android:id="@+id/buttonX"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginStart="175dp"
+            android:layout_marginLeft="175dp"
+            android:onClick="myClickChecker"/>
+        <Button
+            android:text="y"
+            android:textSize="11sp"
+            android:id="@+id/buttonY"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginLeft="210dp"
+            android:onClick="myClickChecker"/>
+        <Button
+            android:text="z"
+            android:textSize="12sp"
+            android:id="@+id/buttonZ"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginStart="245dp"
+            android:layout_marginLeft="245dp"
+            android:onClick="myClickChecker"/>
+    </RelativeLayout>
+
 
 </RelativeLayout>

@@ -12,14 +12,9 @@ public class Words {
         "desk", "doors", "computer", "range", "working", "chair", "water", "finder"
     };
 
-
-
-
     public String getWordToHangYou(){
         Random ranGen = new Random();
         int ranNum = ranGen.nextInt(16);
         return wordsToHangYou[ranNum];
-
     }
-
 }
