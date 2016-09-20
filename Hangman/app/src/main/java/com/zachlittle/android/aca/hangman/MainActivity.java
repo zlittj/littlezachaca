@@ -2,21 +2,33 @@ package com.zachlittle.android.aca.hangman;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    String mStringFromRandom;
     Words mWords = new Words();
-    RelativeLayout mRelativeLayout;
-    char[] mChars = new char[10];
-    TextView[] myTextView = new TextView[10];
+    LinearLayout mRelativeLayout;
+    ImageView[] mImageViews = new ImageView[6];
+    TextView mTextViewCharsBad;
+    public char[] getChars() {
+        return mChars;
+    }
+
+    public void setChars(char[] chars) {
+        mChars = chars;
+    }
+
+    char[] mChars = new char[20];
+    TextView[] myTextView = new TextView[20];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +36,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mTextViewCharsBad = (TextView) findViewById(R.id.textViewCharsBad);
+        mImageViews[0] = (ImageView) findViewById(R.id.imageViewHead);
+        mImageViews[1] = (ImageView) findViewById(R.id.imageViewBody);
+        mImageViews[2] = (ImageView) findViewById(R.id.imageViewLeftArm);
+        mImageViews[3] = (ImageView) findViewById(R.id.imageViewRightArm);
+        mImageViews[4] = (ImageView) findViewById(R.id.imageViewLeftLeg);
+        mImageViews[5] = (ImageView) findViewById(R.id.imageViewRightLeg);
+            for (int q=0; q<6; q++){
+                mImageViews[q].setVisibility(View.INVISIBLE);
+            }
+        mRelativeLayout = (LinearLayout) findViewById(R.id.linLayout);
 
-        mRelativeLayout = (RelativeLayout) findViewById(R.id.relLayout);
-
-        String s = mWords.getWordToHangYou();
-        for (int j=0; j<=s.length(); j++){
-          mChars[j] =  s.charAt(j);
+        mStringFromRandom = mWords.getWordToHangYou();
+        Log.i("looky a stirng", mStringFromRandom);
+        for (int j = 0; j < (mStringFromRandom.length()); j++) {
+            mChars[j] = mStringFromRandom.charAt(j);
         }
 
-        for (int i=0; i<= s.length(); i++){
-            final TextView rowTextView = new TextView(this);
+        for (int i = 0; i < (mStringFromRandom.length()); i++) {
+            TextView rowTextView = new TextView(this);
             mRelativeLayout.addView(rowTextView);
             myTextView[i] = rowTextView;
+            String s = Character.toString(mChars[i]) + " ";
+            rowTextView.setAllCaps(true);
+            rowTextView.setBackgroundColor(getResources().getColor(R.color.black));
+            rowTextView.setTextSize(20f);
+            rowTextView.setText(s);
         }
+
 
 
 
@@ -45,11 +73,15 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //inflater to enter in a char
+                DialogEnterText dialog = new DialogEnterText();
+                dialog.show(getFragmentManager(), "");
+                //in here i will want to check if mchar contains the letter, if so then set the background to white, else print the text in a new linear text field
+                //also show image of the guy dieing
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

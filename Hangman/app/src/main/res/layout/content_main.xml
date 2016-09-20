@@ -18,69 +18,85 @@
         android:layout_width="60dp"
         android:layout_height="80dp"
         app:srcCompat="@drawable/left_leg"
-        android:layout_marginTop="325dp"
+        android:layout_marginTop="370dp"
         android:id="@+id/imageViewLeftLeg"
-        android:layout_marginStart="135dp"
-
-        android:layout_marginLeft="135dp"/>
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="155dp"/>
 
     <ImageView
         android:layout_width="70dp"
         android:layout_height="100dp"
         app:srcCompat="@drawable/right_arm"
-        android:layout_marginTop="200dp"
-        android:layout_marginStart="195dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginStart="215dp"
         android:id="@+id/imageViewRightArm"
-        android:layout_marginLeft="195dp"/>
+        android:layout_marginLeft="215dp"/>
 
     <ImageView
         android:layout_width="70dp"
         android:layout_height="80dp"
         app:srcCompat="@drawable/righ_leg"
         android:id="@+id/imageViewRightLeg"
-        android:layout_marginTop="320dp"
-        android:layout_marginStart="195dp"
-        android:layout_marginLeft="195dp"/>
+        android:layout_marginTop="365dp"
+        android:layout_marginStart="215dp"
+        android:layout_marginLeft="215dp"/>
 
     <ImageView
         android:layout_width="70dp"
         android:layout_height="100dp"
         app:srcCompat="@drawable/left_arm"
         android:id="@+id/imageViewLeftArm"
-        android:layout_marginTop="200dp"
-        android:layout_marginStart="135dp"
-        android:layout_marginLeft="135dp"/>
+        android:layout_marginTop="230dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="155dp"/>
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:srcCompat="@drawable/head"
         android:id="@+id/imageViewHead"
-        android:layout_marginTop="104dp"
-        android:layout_marginLeft="140dp"/>
+        android:layout_marginTop="153dp"
+        android:layout_marginLeft="160dp"/>
 
     <ImageView
         android:layout_width="100dp"
         app:srcCompat="@drawable/body"
         android:id="@+id/imageViewBody"
         android:layout_height="150dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginLeft="140dp"/>
+        android:layout_marginTop="236dp"
+        android:layout_marginLeft="160dp"/>
 
     <ImageView
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         app:srcCompat="@drawable/gallows"
         android:id="@+id/imageViewGallows"
-        android:layout_width="200dp"
-        android:layout_marginBottom="11dp"/>
+        android:layout_width="280dp"
 
-    <RelativeLayout
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="-40dp"
+        android:layout_marginLeft="1dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_height="50dp"
-        android:id="@+id/relLayout">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linLayout"
+        android:layout_height="62dp">
+    </LinearLayout>
 
-    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linLayVert"
+        android:orientation="vertical"
+        android:layout_width="60dp"
+        android:layout_height="300dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="100dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textViewCharsBad"/>
+    </LinearLayout>
+
 </RelativeLayout>
