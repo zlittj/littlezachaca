@@ -1,5 +1,6 @@
 package com.zachlittle.android.aca.hangman;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     Words mWords = new Words();
     LinearLayout mLinearLayout;
     ImageView[] mImageViews = new ImageView[6];
+    SharedPreferences mSharedPreferences;
+    SharedPreferences.Editor mEditor;
 
     boolean b;
     char mChar;
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     int mIntTwo =0;
     char[] mChars = new char[20];
     TextView[] myTextView = new TextView[20];
+    int mScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
             myTextView[i] = rowTextView;
             rowTextView.setAllCaps(true);
             rowTextView.setTextSize(20f);
-            rowTextView.setText("___"+ "  ");
+            String blanks = "__  ";
+            rowTextView.setText(blanks);
         }
     }//end of on Create
 
@@ -253,11 +258,13 @@ public class MainActivity extends AppCompatActivity {
                 String s = Character.toString(mChars[i]) + "   ";
                 myTextView[i].setText(s);
                 mIntTwo++;
+                mScore = mScore +10;
                 Log.i("int", "   " + mIntTwo);
                 Log.i("mchars length", "   " + mStringFromRandom.length());
                 b = true;
                 if (mStringFromRandom.length() == mIntTwo){
                     Log.i("boolean", "" + b);
+                    mScore = mScore*mStringFromRandom.length();
                     isB();
                 }
             }
@@ -269,16 +276,30 @@ public class MainActivity extends AppCompatActivity {
             Log.i("bad", ""+mChar);
             mImageViews[mInt].setVisibility(View.VISIBLE);
             mInt++;
+            mScore = mScore -2;
             if (mInt == 6){
+                mScore = mScore + mStringFromRandom.length();
                 isB();
             }
         }
     }
 
     public void isB() {
+        mSharedPreferences = getSharedPreferences("Hangman", MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        boolean x = false;
+        if (mSharedPreferences.getInt("SCORE", 0) < mScore){
+            mEditor.putInt("SCORE", mScore);
+            mEditor.commit();
+            x = true;
+        }
+
         DialogEnterText dialogEnterText = new DialogEnterText();
         Bundle bundle = new Bundle();
         bundle.putBoolean("TAG", b);
+        bundle.putString("WORD", mStringFromRandom);
+        bundle.putInt("SCORE", mScore);
+        bundle.putBoolean("HIGHSCORE", x);
         dialogEnterText.setArguments(bundle);
         dialogEnterText.show(getFragmentManager(), "");
     }

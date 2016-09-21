@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="winner">YOU WON!!! WAHOOOO</string>
     <string name="loser">You Lose....this is the worst!</string>
+    <string name="you_loose">You Loose!</string>
+    <string name="new_game">New Game</string>
 </resources>

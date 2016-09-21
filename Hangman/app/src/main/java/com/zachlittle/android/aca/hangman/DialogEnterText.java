@@ -3,6 +3,7 @@ package com.zachlittle.android.aca.hangman;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,9 @@ public class DialogEnterText extends DialogFragment {
     private char mChar;
     boolean mBoolean;
     TextView textView;
+    TextView mTextViewDisplayWord;
+    TextView mTextViewScore;
+    SharedPreferences mSharedPreferences;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -24,6 +28,9 @@ public class DialogEnterText extends DialogFragment {
         View dialogView = inflater.inflate(R.layout.char_enter, null);
         Button btnEnter = (Button) dialogView.findViewById(R.id.button);
         textView = (TextView) dialogView.findViewById(R.id.textView);
+        mTextViewDisplayWord = (TextView) dialogView.findViewById(R.id.textViewDisplayWord);
+        mTextViewScore = (TextView) dialogView.findViewById(R.id.textViewScore);
+
         Bundle bundle = this.getArguments();
         mBoolean = bundle.getBoolean("TAG", false);
         Log.i("dialog boo", ""+mBoolean);
@@ -32,15 +39,19 @@ public class DialogEnterText extends DialogFragment {
         }else {
             textView.setText(R.string.loser);
         }
+        String addToView = "\n\n"+ "The word was: " +bundle.getString("WORD");
+        mTextViewDisplayWord.setText(addToView);
+        addToView = "Your Score: " +bundle.getInt("SCORE");
+        if (bundle.getBoolean("HIGHSCORE")){
+            mTextViewScore.append("ITS A NEW HIGH SCORE!!!!!");
+        }
+        mTextViewScore.setText(addToView);
 
         builder.setView(dialogView);
 
         btnEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //save high scores
-                //get a new random
-                //reset on create
                 ((MainActivity)getActivity()).recreate();
                 dismiss();
             }

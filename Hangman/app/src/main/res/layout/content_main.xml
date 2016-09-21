@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -15,98 +16,101 @@
     tools:showIn="@layout/activity_main"
     >
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:srcCompat="@drawable/left_leg"
-        android:layout_marginTop="279dp"
-        android:id="@+id/imageViewLeftLeg"
-        android:layout_marginStart="169dp"
-        android:layout_marginLeft="169dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/linLayout"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:layout_height="42dp"
+        android:layout_weight=".2">
+    </LinearLayout>
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:srcCompat="@drawable/right_arm"
-        android:layout_marginTop="190dp"
-        android:layout_marginStart="216dp"
-        android:id="@+id/imageViewRightArm"
-        android:layout_marginLeft="216dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
-    <ImageView
+
+        <ImageView
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/gallows"
+            android:id="@+id/imageViewGallows"
+            android:layout_width="280dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="18dp"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/left_arm"
+            android:id="@+id/imageViewLeftArm"
+            android:layout_marginTop="18dp"
+            android:layout_below="@+id/imageViewHead"
+            android:layout_alignLeft="@+id/imageViewLeftLeg"
+            android:layout_alignStart="@+id/imageViewLeftLeg"/>
+
+        <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:srcCompat="@drawable/right_leg"
         android:id="@+id/imageViewRightLeg"
-        android:layout_marginTop="278dp"
-        android:layout_marginStart="218dp"
-        android:layout_marginLeft="218dp"/>
+        android:layout_alignBottom="@+id/imageViewGallows"
+        android:layout_toRightOf="@+id/imageViewLeftArm"
+        android:layout_toEndOf="@+id/imageViewLeftArm"/>
 
-    <ImageView
+        <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:srcCompat="@drawable/left_arm"
-        android:id="@+id/imageViewLeftArm"
-        android:layout_marginTop="190dp"
-        android:layout_marginStart="170dp"
-        android:layout_marginLeft="170dp"/>
+        app:srcCompat="@drawable/left_leg"
+        android:id="@+id/imageViewLeftLeg"
+        android:layout_alignTop="@+id/imageViewRightLeg"
+        android:layout_alignRight="@+id/imageViewGallows"
+        android:layout_alignEnd="@+id/imageViewGallows"
+        android:layout_marginRight="54dp"
+        android:layout_marginEnd="54dp"/>
 
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:srcCompat="@drawable/head"
-        android:id="@+id/imageViewHead"
-        android:layout_marginTop="136dp"
-        android:layout_marginLeft="180dp"
-        android:layout_marginStart="180dp"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/head"
+            android:id="@+id/imageViewHead"
+            android:layout_marginTop="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/imageViewBody"
+            android:layout_alignStart="@+id/imageViewBody"/>
 
-    <ImageView
-        android:layout_width="50dp"
-        app:srcCompat="@drawable/body"
-        android:id="@+id/imageViewBody"
-        android:layout_height="100dp"
-        android:layout_marginTop="188dp"
-        android:layout_marginLeft="190dp"
-        android:layout_marginStart="190dp"/>
+        <ImageView
+            android:layout_width="50dp"
+            app:srcCompat="@drawable/body"
+            android:id="@+id/imageViewBody"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/imageViewLeftArm"
+            android:layout_alignStart="@+id/imageViewLeftArm"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"/>
 
-    <ImageView
-        android:layout_height="250dp"
-        app:srcCompat="@drawable/gallows"
-        android:id="@+id/imageViewGallows"
-        android:layout_width="280dp"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/right_arm"
+            android:id="@+id/imageViewRightArm"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageViewLeftArm"
+            android:layout_toEndOf="@+id/imageViewLeftArm"/>
 
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="1dp"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/linLayout"
-        android:gravity="center_vertical|center_horizontal|center"
-        android:layout_height="42dp">
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_vertical|center_horizontal|center"
-        android:layout_marginTop="46dp"
-        android:id="@+id/linLayoutTwo">
-    </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relLayoutButtons"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_below="@+id/imageViewGallows"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:layout_weight=".3">
 
         <Button
             android:text="A"
@@ -383,4 +387,4 @@
     </RelativeLayout>
 
 
-</RelativeLayout>
+</LinearLayout>
