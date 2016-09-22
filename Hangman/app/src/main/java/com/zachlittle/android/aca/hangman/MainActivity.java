@@ -60,16 +60,17 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     SharedPreferences mSharedPreferences;
     SharedPreferences.Editor mEditor;
 
-    boolean b;
+    boolean mB;
     char mChar;
     int mInt = 0;
     int mIntTwo =0;
     char[] mChars = new char[20];
-    TextView[] myTextView = new TextView[20];
+    TextView[] mTextView = new TextView[20];
     int mScore;
     boolean mIfHighScore = false;
     int mHighScore;
     Animation mAnimation;
+    int mTotalScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
 
         mStringFromRandom = mWords.getWordToHangYou();
         Log.i("looky a string", mStringFromRandom);
+        int sizeOfArray = mWords.getLength();
+        Log.i("size", "here is the zied"+sizeOfArray);
         for (int j = 0; j < (mStringFromRandom.length()); j++) {
             mChars[j] = mStringFromRandom.charAt(j);
         }
@@ -126,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         for (int i = 0; i < (mStringFromRandom.length()); i++) {
             TextView rowTextView = new TextView(this);
             mLinearLayout.addView(rowTextView);
-            myTextView[i] = rowTextView;
+            mTextView[i] = rowTextView;
             rowTextView.setAllCaps(true);
             rowTextView.setTextSize(20f);
             String blanks = "__  ";
@@ -159,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
 
     public void myClickChecker(View display){
         int id = display.getId();
-        b = false;
+        mB = false;
 
         switch (id){
             case R.id.buttonA:
@@ -272,32 +275,30 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
             if (mChars[i] == mChar) {
                 Log.i("good", "its a good one      " +mChar);
                 String s = Character.toString(mChars[i]) + "   ";
-                myTextView[i].setText(s);
+                mTextView[i].setText(s);
                 mIntTwo++;
                 mScore = mScore +10;
                 Log.i("int", "   " + mIntTwo);
                 Log.i("mchars length", "   " + mStringFromRandom.length());
-                b = true;
+                mB = true;
                 if (mStringFromRandom.length() == mIntTwo){
-                    Log.i("boolean", "" + b);
+                    Log.i("boolean", "" + mB);
                     mScore = mScore*mStringFromRandom.length();
                     isB();
                 }
             }
         }
 
-        if (b) {
-            //do nothing
-        }else {
+        if (!mB) {
             Log.i("bad", ""+mChar);
-            randomAnim();
+            randomAnim(mInt);
             mImageViews[mInt].setVisibility(View.VISIBLE);
-            mImageViews[mInt].startAnimation(mAnimation);
+
             mInt++;
             mScore = mScore -2;
             if (mInt == 6){
                 mScore = mScore + mStringFromRandom.length();
-                mOnLose.setDuration(3000);
+                losingAnim();
             }
         }
     }
@@ -306,7 +307,8 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         mSharedPreferences = getSharedPreferences("Hangman", MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
         mHighScore = mSharedPreferences.getInt("SCORE", 0);
-
+        mTotalScore = mScore + mSharedPreferences.getInt("TOTALSCORE", 0);
+        mEditor.putInt("TOTALSCORE", mTotalScore);
         if (mHighScore < mScore){
             mEditor.putInt("SCORE", mScore);
             mEditor.commit();
@@ -315,7 +317,8 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
 
         DialogEnterText dialogEnterText = new DialogEnterText();
         Bundle bundle = new Bundle();
-        bundle.putBoolean("TAG", b);
+        bundle.putInt("TSCORE", mTotalScore);
+        bundle.putBoolean("TAG", mB);
         bundle.putString("WORD", mStringFromRandom);
         bundle.putBoolean("IFHIGHSCORE", mIfHighScore);
         bundle.putInt("HIGHSCORE", mHighScore);
@@ -328,35 +331,61 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         mAnimRightLeft = AnimationUtils.loadAnimation(this, R.anim.right_left);
         mAnimTopBottom = AnimationUtils.loadAnimation(this,R.anim.top_bot);
         mAnimFadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        mAnimFadeIn.setAnimationListener(this);
         mOnLose = AnimationUtils.loadAnimation(this, R.anim.on_lose);
     }
-    private void randomAnim(){
+    private void losingAnim(){
+        mOnLose.setDuration(3000);
+        for (int i=0; i<mImageViews.length; i++){
+            mImageViews[i].startAnimation(mOnLose);
+        }
+        mOnLose.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {}
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Log.i("inAnim", "Animating"+animation);
+                if (animation == mOnLose){
+                    isB();
+                }
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+    }
+    private void randomAnim(int i){
         Random randomGen = new Random();
         int randomNum = randomGen.nextInt(3);
         Animation[] anims = {mAnimTopBottom, mAnimRightLeft, mAnimFadeIn, mAnimLeftRight};
         mAnimation = anims[randomNum];
-        mAnimation.setDuration(2000);
+        mAnimation.setDuration(1000);
+        mImageViews[i].startAnimation(mAnimation);
+        mAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Log.i("cancel", "cancel anim");
+                animation.cancel();
+                animation.reset();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
     }
 
     @Override
-    public void onAnimationStart(Animation animation) {
-
-    }
+    public void onAnimationStart(Animation animation) {}
 
     @Override
-    public void onAnimationEnd(Animation animation) {
-
-        if (animation == mOnLose){
-            isB();
-        } else {
-            
-        }
-    }
+    public void onAnimationEnd(Animation animation) {}
 
     @Override
-    public void onAnimationRepeat(Animation animation) {
-
-    }
+    public void onAnimationRepeat(Animation animation) {}
 }// end of class

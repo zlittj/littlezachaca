@@ -20,6 +20,7 @@ public class DialogEnterText extends DialogFragment {
     TextView mTextViewScore;
     int mHighScore;
     boolean mIfHighScore;
+    int mTotalScore;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class DialogEnterText extends DialogFragment {
         mIfHighScore = bundle.getBoolean("IFHIGHSCORE");
         mBoolean = bundle.getBoolean("TAG", false);
         mHighScore = bundle.getInt("HIGHSCORE");
+        mTotalScore = bundle.getInt("TSCORE");
         Log.i("dialog boo", ""+mBoolean);
         if (mBoolean){
             textView.setText(R.string.winner);
@@ -49,8 +51,10 @@ public class DialogEnterText extends DialogFragment {
         mTextViewScore.setText(addToView);
         if (mIfHighScore){
             mTextViewScore.append("\n\n\nITS A NEW HIGH SCORE!!!!!");
+            mTextViewScore.append("\n Your Total Score: " + mTotalScore);
         }else {
             mTextViewScore.append("\n \n\nYour High Score: " + mHighScore);
+            mTextViewScore.append("\n Your Total Score: " + mTotalScore);
         }
 
         builder.setView(dialogView);
