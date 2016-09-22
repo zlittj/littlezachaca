@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView mTextViewMiddle;
     TextView mTextViewBottom;
     TextView mTextViewDiceResult;
-    private final static float ACC = 10;
+    private final static float ACC = 30;
     ImageView mImageView1;
     ImageView mImageView2;
     ImageButton mImageButton;
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         float[] shaker = event.values;
         long times = event.timestamp;
         if ((Math.abs(shaker[0]) > ACC || Math.abs(shaker[1]) > ACC || Math
-                .abs(shaker[2]) > ACC) && (times>(mTimeKeeper+2000))) {
+                .abs(shaker[2]) > ACC) && (times>(mTimeKeeper+20000))) {
             Random randNumGen = new Random();
             int randomNumber = randNumGen.nextInt(20);
             mTextViewTop.setText(mAnswersTopArrayList.get(randomNumber));

@@ -3,7 +3,6 @@ package com.zachlittle.android.aca.hangman;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +18,8 @@ public class DialogEnterText extends DialogFragment {
     TextView textView;
     TextView mTextViewDisplayWord;
     TextView mTextViewScore;
-    SharedPreferences mSharedPreferences;
+    int mHighScore;
+    boolean mIfHighScore;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -31,8 +31,12 @@ public class DialogEnterText extends DialogFragment {
         mTextViewDisplayWord = (TextView) dialogView.findViewById(R.id.textViewDisplayWord);
         mTextViewScore = (TextView) dialogView.findViewById(R.id.textViewScore);
 
+
+
         Bundle bundle = this.getArguments();
+        mIfHighScore = bundle.getBoolean("IFHIGHSCORE");
         mBoolean = bundle.getBoolean("TAG", false);
+        mHighScore = bundle.getInt("HIGHSCORE");
         Log.i("dialog boo", ""+mBoolean);
         if (mBoolean){
             textView.setText(R.string.winner);
@@ -42,10 +46,12 @@ public class DialogEnterText extends DialogFragment {
         String addToView = "\n\n"+ "The word was: " +bundle.getString("WORD");
         mTextViewDisplayWord.setText(addToView);
         addToView = "Your Score: " +bundle.getInt("SCORE");
-        if (bundle.getBoolean("HIGHSCORE")){
-            mTextViewScore.append("ITS A NEW HIGH SCORE!!!!!");
-        }
         mTextViewScore.setText(addToView);
+        if (mIfHighScore){
+            mTextViewScore.append("\n\n\nITS A NEW HIGH SCORE!!!!!");
+        }else {
+            mTextViewScore.append("\n \n\nYour High Score: " + mHighScore);
+        }
 
         builder.setView(dialogView);
 

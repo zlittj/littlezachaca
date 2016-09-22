@@ -14,7 +14,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.zachlittle.android.aca.hangman.MainActivity"
     tools:showIn="@layout/activity_main"
-    >
+    android:background="@color/colorPrimaryDark">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -22,53 +22,58 @@
         android:id="@+id/linLayout"
         android:gravity="center_vertical|center_horizontal|center"
         android:layout_height="42dp"
-        android:layout_weight=".2">
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:layout_marginBottom="20dp"
         >
 
+    </LinearLayout>
 
-        <ImageView
-            android:layout_height="250dp"
-            app:srcCompat="@drawable/gallows"
-            android:id="@+id/imageViewGallows"
-            android:layout_width="280dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="18dp"/>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/left_arm"
-            android:id="@+id/imageViewLeftArm"
-            android:layout_marginTop="18dp"
-            android:layout_below="@+id/imageViewHead"
-            android:layout_alignLeft="@+id/imageViewLeftLeg"
-            android:layout_alignStart="@+id/imageViewLeftLeg"/>
+    >
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/left_arm"
+        android:id="@+id/imageViewLeftArm"
+        android:elevation="40dp"
+
+
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="106dp"
+        android:layout_marginStart="106dp"
+        android:layout_alignLeft="@+id/imageViewGallows"
+        android:layout_alignStart="@+id/imageViewGallows"
+        android:layout_alignTop="@+id/imageViewGallows"
+        />
 
         <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:srcCompat="@drawable/right_leg"
         android:id="@+id/imageViewRightLeg"
-        android:layout_alignBottom="@+id/imageViewGallows"
-        android:layout_toRightOf="@+id/imageViewLeftArm"
-        android:layout_toEndOf="@+id/imageViewLeftArm"/>
+        android:layout_marginTop="175dp"
+        android:layout_marginLeft="154dp"
+        android:layout_alignLeft="@+id/imageViewGallows"
+        android:layout_alignStart="@+id/imageViewGallows"
+        android:layout_alignTop="@+id/imageViewGallows"
+
+       />
 
         <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:srcCompat="@drawable/left_leg"
-        android:id="@+id/imageViewLeftLeg"
-        android:layout_alignTop="@+id/imageViewRightLeg"
-        android:layout_alignRight="@+id/imageViewGallows"
-        android:layout_alignEnd="@+id/imageViewGallows"
-        android:layout_marginRight="54dp"
-        android:layout_marginEnd="54dp"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/left_leg"
+            android:id="@+id/imageViewLeftLeg"
+            android:layout_marginStart="106dp"
+            android:layout_marginTop="180dp"
+            android:layout_alignLeft="@+id/imageViewGallows"
+            android:layout_alignStart="@+id/imageViewGallows"
+            android:layout_alignTop="@+id/imageViewGallows"
+            android:layout_marginLeft="106dp"/>
 
         <ImageView
             android:layout_width="60dp"
@@ -76,29 +81,47 @@
             app:srcCompat="@drawable/head"
             android:id="@+id/imageViewHead"
             android:layout_marginTop="35dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/imageViewBody"
-            android:layout_alignStart="@+id/imageViewBody"/>
-
-        <ImageView
-            android:layout_width="50dp"
-            app:srcCompat="@drawable/body"
-            android:id="@+id/imageViewBody"
-            android:layout_height="100dp"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/imageViewLeftArm"
-            android:layout_alignStart="@+id/imageViewLeftArm"
-            android:layout_marginLeft="11dp"
-            android:layout_marginStart="11dp"/>
+            android:layout_marginStart="120dp"
+            android:layout_alignTop="@+id/imageViewGallows"
+            android:layout_alignLeft="@+id/imageViewGallows"
+            android:layout_alignStart="@+id/imageViewGallows"
+            android:layout_marginLeft="120dp"/>
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/right_arm"
             android:id="@+id/imageViewRightArm"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="90dp"
+            android:layout_alignLeft="@+id/imageViewGallows"
+            android:layout_alignStart="@+id/imageViewGallows"
+            android:layout_alignTop="@+id/imageViewGallows"
+            android:layout_marginLeft="156dp"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            app:srcCompat="@drawable/body"
+            android:id="@+id/imageViewBody"
+            android:layout_height="100dp"
+            android:layout_marginTop="86dp"
+            android:layout_marginLeft="128dp"
+            android:layout_marginStart="128dp"
+            android:layout_alignLeft="@+id/imageViewGallows"
+            android:layout_alignStart="@+id/imageViewGallows"
+            android:layout_alignTop="@+id/imageViewGallows"
+            />
+
+        <ImageView
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/gallows"
+            android:id="@+id/imageViewGallows"
+            android:layout_width="160dp"
+            android:layout_margin="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/imageViewLeftArm"
-            android:layout_toEndOf="@+id/imageViewLeftArm"/>
+            />
 
     </RelativeLayout>
 
@@ -116,19 +139,21 @@
             android:text="A"
             android:textSize="10sp"
             android:id="@+id/buttonA"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:onClick="myClickChecker"
-            android:gravity="center_vertical|center_horizontal|center"/>
+            android:gravity="center_vertical|center_horizontal|center"
+            android:background="@color/colorPrimary"/>
 
         <Button
             android:text="b"
             android:textSize="10sp"
+            android:background="@color/colorPrimary"
             android:id="@+id/buttonB"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
             android:onClick="myClickChecker"/>
 
 
@@ -136,80 +161,88 @@
         <Button
             android:text="c"
             android:textSize="10sp"
+            android:background="@color/colorPrimary"
             android:id="@+id/buttonC"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="74dp"
+            android:layout_marginLeft="74dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="d"
             android:textSize="12sp"
+            android:background="@color/colorPrimary"
             android:id="@+id/buttonD"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="105dp"
-            android:layout_marginLeft="105dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginLeft="111dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="e"
             android:textSize="12sp"
             android:id="@+id/buttonE"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="140dp"
-            android:layout_marginLeft="140dp"
+            android:background="@color/colorPrimary"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="148dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="f"
             android:textSize="12sp"
+            android:background="@color/colorPrimary"
             android:id="@+id/buttonF"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="175dp"
-            android:layout_marginLeft="175dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginLeft="185dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="g"
             android:textSize="12sp"
             android:id="@+id/buttonG"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="210dp"
-            android:layout_marginLeft="210dp"
+            android:background="@color/colorPrimary"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="222dp"
+            android:layout_marginLeft="222dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="h"
             android:textSize="10sp"
             android:id="@+id/buttonH"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="245dp"
-            android:layout_marginLeft="245dp"
+            android:background="@color/colorPrimary"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="259dp"
+            android:layout_marginLeft="259dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="i"
             android:textSize="12sp"
             android:id="@+id/buttonI"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="280dp"
-            android:layout_marginLeft="280dp"
+            android:background="@color/colorPrimary"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="296dp"
+            android:layout_marginLeft="296dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="j"
             android:textSize="12sp"
             android:id="@+id/buttonJ"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="41dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
             android:onClick="myClickChecker"
             />
 
@@ -217,172 +250,188 @@
             android:text="k"
             android:textSize="10sp"
             android:id="@+id/buttonK"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="l"
             android:textSize="12sp"
             android:id="@+id/buttonL"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="74dp"
+            android:layout_marginLeft="74dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="m"
             android:textSize="8sp"
             android:id="@+id/buttonM"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginStart="105dp"
-            android:layout_marginLeft="105dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginLeft="111dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="n"
             android:textSize="12sp"
             android:id="@+id/buttonN"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginStart="140dp"
-            android:layout_marginLeft="140dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="148dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="o"
             android:textSize="10sp"
             android:id="@+id/buttonO"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginStart="175dp"
-            android:layout_marginLeft="175dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginLeft="185dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="p"
             android:textSize="10sp"
             android:id="@+id/buttonP"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginStart="210dp"
-            android:layout_marginLeft="210dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="222dp"
+            android:layout_marginLeft="222dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="q"
             android:textSize="10sp"
             android:id="@+id/buttonQ"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginStart="245dp"
-            android:layout_marginLeft="245dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="259dp"
+            android:layout_marginLeft="259dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="r"
             android:textSize="10sp"
             android:id="@+id/buttonR"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginStart="280dp"
-            android:layout_marginLeft="280dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="296dp"
+            android:layout_marginLeft="296dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="s"
             android:textSize="10sp"
             android:id="@+id/buttonS"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="81dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="t"
             android:textSize="12sp"
             android:id="@+id/buttonT"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="u"
             android:textSize="11sp"
             android:id="@+id/buttonU"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="74dp"
+            android:layout_marginLeft="74dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="v"
             android:textSize="10sp"
             android:id="@+id/buttonV"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginStart="105dp"
-            android:layout_marginLeft="105dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginLeft="111dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="w"
             android:textSize="8sp"
             android:id="@+id/buttonW"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginStart="140dp"
-            android:layout_marginLeft="140dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="148dp"
             android:onClick="myClickChecker"/>
 
         <Button
             android:text="x"
             android:textSize="11sp"
             android:id="@+id/buttonX"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginStart="175dp"
-            android:layout_marginLeft="175dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginLeft="185dp"
             android:onClick="myClickChecker"/>
         <Button
             android:text="y"
             android:textSize="11sp"
             android:id="@+id/buttonY"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginStart="210dp"
-            android:layout_marginLeft="210dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="222dp"
+            android:layout_marginLeft="222dp"
             android:onClick="myClickChecker"/>
         <Button
             android:text="z"
             android:textSize="12sp"
             android:id="@+id/buttonZ"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="81dp"
-            android:layout_marginStart="245dp"
-            android:layout_marginLeft="245dp"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="259dp"
+            android:layout_marginLeft="259dp"
             android:onClick="myClickChecker"/>
     </RelativeLayout>
 

@@ -1,5 +1,6 @@
 package com.zachlittle.android.aca.hangman;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +9,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity implements Animation.AnimationListener{
 
     Button mButtonA;
     Button mButtonB;
@@ -42,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
     Button mButtonY;
     Button mButtonZ;
 
+    Animation mAnimLeftRight;
+    Animation mAnimRightLeft;
+    Animation mAnimTopBottom;
+    Animation mAnimFadeIn;
+    Animation mOnLose;
+
     String mStringFromRandom;
     Words mWords = new Words();
     LinearLayout mLinearLayout;
@@ -56,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     char[] mChars = new char[20];
     TextView[] myTextView = new TextView[20];
     int mScore;
+    boolean mIfHighScore = false;
+    int mHighScore;
+    Animation mAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        loadAnimations();
         mButtonA = (Button) findViewById(R.id.buttonA);
         mButtonB = (Button) findViewById(R.id.buttonB);
         mButtonC = (Button) findViewById(R.id.buttonC);
@@ -136,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -274,12 +290,14 @@ public class MainActivity extends AppCompatActivity {
             //do nothing
         }else {
             Log.i("bad", ""+mChar);
+            randomAnim();
             mImageViews[mInt].setVisibility(View.VISIBLE);
+            mImageViews[mInt].startAnimation(mAnimation);
             mInt++;
             mScore = mScore -2;
             if (mInt == 6){
                 mScore = mScore + mStringFromRandom.length();
-                isB();
+                mOnLose.setDuration(3000);
             }
         }
     }
@@ -287,21 +305,58 @@ public class MainActivity extends AppCompatActivity {
     public void isB() {
         mSharedPreferences = getSharedPreferences("Hangman", MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
-        boolean x = false;
-        if (mSharedPreferences.getInt("SCORE", 0) < mScore){
+        mHighScore = mSharedPreferences.getInt("SCORE", 0);
+
+        if (mHighScore < mScore){
             mEditor.putInt("SCORE", mScore);
             mEditor.commit();
-            x = true;
+            mIfHighScore = true;
         }
 
         DialogEnterText dialogEnterText = new DialogEnterText();
         Bundle bundle = new Bundle();
         bundle.putBoolean("TAG", b);
         bundle.putString("WORD", mStringFromRandom);
+        bundle.putBoolean("IFHIGHSCORE", mIfHighScore);
+        bundle.putInt("HIGHSCORE", mHighScore);
         bundle.putInt("SCORE", mScore);
-        bundle.putBoolean("HIGHSCORE", x);
         dialogEnterText.setArguments(bundle);
         dialogEnterText.show(getFragmentManager(), "");
     }
+    private void loadAnimations(){
+        mAnimLeftRight = AnimationUtils.loadAnimation(this, R.anim.left_right);
+        mAnimRightLeft = AnimationUtils.loadAnimation(this, R.anim.right_left);
+        mAnimTopBottom = AnimationUtils.loadAnimation(this,R.anim.top_bot);
+        mAnimFadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        mAnimFadeIn.setAnimationListener(this);
+        mOnLose = AnimationUtils.loadAnimation(this, R.anim.on_lose);
+    }
+    private void randomAnim(){
+        Random randomGen = new Random();
+        int randomNum = randomGen.nextInt(3);
+        Animation[] anims = {mAnimTopBottom, mAnimRightLeft, mAnimFadeIn, mAnimLeftRight};
+        mAnimation = anims[randomNum];
+        mAnimation.setDuration(2000);
 
+    }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+
+        if (animation == mOnLose){
+            isB();
+        } else {
+            
+        }
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
+    }
 }// end of class
