@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 numberArray = new int[n];
                 int z = n - 1;
                 t = n;
+
                 do {
                     numberArray[t-1] = t;
                     t--;

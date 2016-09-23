@@ -1,8 +1,7 @@
 package com.zachlittle.android.aca.marsrobot;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         spirit.status = "exploring";
         spirit.speed = 2;
         spirit.temperature = -60;
+
 
 
 

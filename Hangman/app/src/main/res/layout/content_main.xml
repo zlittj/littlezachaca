@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.zachlittle.android.aca.hangman.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:background="@color/colorPrimaryDark">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/linLayout"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:layout_height="42dp"
+        android:layout_weight=".2"
+        android:layout_marginBottom="20dp"
+        >
+
+    </LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/left_arm"
+        android:id="@+id/imageViewLeftArm"
+        android:elevation="40dp"
+
+
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="106dp"
+        android:layout_marginStart="106dp"
+        android:layout_alignLeft="@+id/imageViewGallows"
+        android:layout_alignStart="@+id/imageViewGallows"
+        android:layout_alignTop="@+id/imageViewGallows"
+        />
+
+        <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/right_leg"
+        android:id="@+id/imageViewRightLeg"
+        android:layout_marginTop="175dp"
+        android:layout_marginLeft="154dp"
+        android:layout_alignLeft="@+id/imageViewGallows"
+        android:layout_alignStart="@+id/imageViewGallows"
+        android:layout_alignTop="@+id/imageViewGallows"
+
+       />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/left_leg"
+            android:id="@+id/imageViewLeftLeg"
+            android:layout_marginStart="106dp"
+            android:layout_marginTop="180dp"
+            android:layout_alignLeft="@+id/imageViewGallows"
+            android:layout_alignStart="@+id/imageViewGallows"
+            android:layout_alignTop="@+id/imageViewGallows"
+            android:layout_marginLeft="106dp"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/head"
+            android:id="@+id/imageViewHead"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="120dp"
+            android:layout_alignTop="@+id/imageViewGallows"
+            android:layout_alignLeft="@+id/imageViewGallows"
+            android:layout_alignStart="@+id/imageViewGallows"
+            android:layout_marginLeft="120dp"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/right_arm"
+            android:id="@+id/imageViewRightArm"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="90dp"
+            android:layout_alignLeft="@+id/imageViewGallows"
+            android:layout_alignStart="@+id/imageViewGallows"
+            android:layout_alignTop="@+id/imageViewGallows"
+            android:layout_marginLeft="156dp"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            app:srcCompat="@drawable/body"
+            android:id="@+id/imageViewBody"
+            android:layout_height="100dp"
+            android:layout_marginTop="86dp"
+            android:layout_marginLeft="128dp"
+            android:layout_marginStart="128dp"
+            android:layout_alignLeft="@+id/imageViewGallows"
+            android:layout_alignStart="@+id/imageViewGallows"
+            android:layout_alignTop="@+id/imageViewGallows"
+            />
+
+        <ImageView
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/gallows"
+            android:id="@+id/imageViewGallows"
+            android:layout_width="160dp"
+            android:layout_margin="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relLayoutButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:layout_weight=".3">
+
+        <Button
+            android:text="A"
+            android:textSize="10sp"
+            android:id="@+id/buttonA"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:onClick="myClickChecker"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:background="@color/colorPrimary"/>
+
+        <Button
+            android:text="b"
+            android:textSize="10sp"
+            android:background="@color/colorPrimary"
+            android:id="@+id/buttonB"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
+            android:onClick="myClickChecker"/>
+
+
+
+        <Button
+            android:text="c"
+            android:textSize="10sp"
+            android:background="@color/colorPrimary"
+            android:id="@+id/buttonC"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="74dp"
+            android:layout_marginLeft="74dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="d"
+            android:textSize="12sp"
+            android:background="@color/colorPrimary"
+            android:id="@+id/buttonD"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginLeft="111dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="e"
+            android:textSize="12sp"
+            android:id="@+id/buttonE"
+            android:background="@color/colorPrimary"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="148dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="f"
+            android:textSize="12sp"
+            android:background="@color/colorPrimary"
+            android:id="@+id/buttonF"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginLeft="185dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="g"
+            android:textSize="12sp"
+            android:id="@+id/buttonG"
+            android:background="@color/colorPrimary"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="222dp"
+            android:layout_marginLeft="222dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="h"
+            android:textSize="10sp"
+            android:id="@+id/buttonH"
+            android:background="@color/colorPrimary"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="259dp"
+            android:layout_marginLeft="259dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="i"
+            android:textSize="12sp"
+            android:id="@+id/buttonI"
+            android:background="@color/colorPrimary"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="296dp"
+            android:layout_marginLeft="296dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="j"
+            android:textSize="12sp"
+            android:id="@+id/buttonJ"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:onClick="myClickChecker"
+            />
+
+        <Button
+            android:text="k"
+            android:textSize="10sp"
+            android:id="@+id/buttonK"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="l"
+            android:textSize="12sp"
+            android:id="@+id/buttonL"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="74dp"
+            android:layout_marginLeft="74dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="m"
+            android:textSize="8sp"
+            android:id="@+id/buttonM"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginLeft="111dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="n"
+            android:textSize="12sp"
+            android:id="@+id/buttonN"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="148dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="o"
+            android:textSize="10sp"
+            android:id="@+id/buttonO"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginLeft="185dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="p"
+            android:textSize="10sp"
+            android:id="@+id/buttonP"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="222dp"
+            android:layout_marginLeft="222dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="q"
+            android:textSize="10sp"
+            android:id="@+id/buttonQ"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="259dp"
+            android:layout_marginLeft="259dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="r"
+            android:textSize="10sp"
+            android:id="@+id/buttonR"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="37dp"
+            android:layout_marginStart="296dp"
+            android:layout_marginLeft="296dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="s"
+            android:textSize="10sp"
+            android:id="@+id/buttonS"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="t"
+            android:textSize="12sp"
+            android:id="@+id/buttonT"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="u"
+            android:textSize="11sp"
+            android:id="@+id/buttonU"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="74dp"
+            android:layout_marginLeft="74dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="v"
+            android:textSize="10sp"
+            android:id="@+id/buttonV"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginLeft="111dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="w"
+            android:textSize="8sp"
+            android:id="@+id/buttonW"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="148dp"
+            android:onClick="myClickChecker"/>
+
+        <Button
+            android:text="x"
+            android:textSize="11sp"
+            android:id="@+id/buttonX"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="185dp"
+            android:layout_marginLeft="185dp"
+            android:onClick="myClickChecker"/>
+        <Button
+            android:text="y"
+            android:textSize="11sp"
+            android:id="@+id/buttonY"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="222dp"
+            android:layout_marginLeft="222dp"
+            android:onClick="myClickChecker"/>
+        <Button
+            android:text="z"
+            android:textSize="12sp"
+            android:id="@+id/buttonZ"
+            android:layout_width="35dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="35dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="259dp"
+            android:layout_marginLeft="259dp"
+            android:onClick="myClickChecker"/>
+    </RelativeLayout>
+
+
+</LinearLayout>
