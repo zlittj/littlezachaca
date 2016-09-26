@@ -1,0 +1,7 @@
+#Fri Sep 23 13:33:27 CDT 2016
+base.0=/Users/Zach/Desktop/littlezachaca/DualFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_b733ddcc3526107dd3c1415ccc044dea832aeecd
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/Zach/Desktop/littlezachaca/DualFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_d2aada8463f689b6540f5d85a23c522980e8fde9/classes.dex
+base.1=/Users/Zach/Desktop/littlezachaca/DualFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_d2aada8463f689b6540f5d85a23c522980e8fde9
+file.0=/Users/Zach/Desktop/littlezachaca/DualFragment/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_b733ddcc3526107dd3c1415ccc044dea832aeecd/classes.dex
