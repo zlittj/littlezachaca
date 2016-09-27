@@ -3,16 +3,24 @@ package com.zachlittle.android.aca.notetoself;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import static android.app.Activity.RESULT_OK;
 
 
 public class DialogNewNote extends DialogFragment {
+
+    private final static int CAMERA_REQUEST = 123;
+    private ImageView mImageView;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -27,6 +35,8 @@ public class DialogNewNote extends DialogFragment {
         final CheckBox checkBoxImportant = (CheckBox) dialogView.findViewById(R.id.checkBoxImportant);
         Button btnCancel = (Button) dialogView.findViewById(R.id.btnCancel);
         Button btnOK = (Button) dialogView.findViewById(R.id.btnOK);
+        Button btnCapture = (Button) dialogView.findViewById(R.id.btnCapture);
+        mImageView = (ImageView) dialogView.findViewById(R.id.imageView);
 
         builder.setView(dialogView).setTitle("Add a new note");
         //Handle the cancel
@@ -62,6 +72,26 @@ public class DialogNewNote extends DialogFragment {
                 dismiss();
             }
         });
+
+        btnCapture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            }
+        });
+
+
+
+
         return builder.create();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK){
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            mImageView.setImageBitmap(photo);
+        }
     }
 }
