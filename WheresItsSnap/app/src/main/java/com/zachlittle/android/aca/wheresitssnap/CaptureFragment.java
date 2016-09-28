@@ -64,6 +64,7 @@ public class CaptureFragment extends Fragment {
                 }
                 if (photoFile !=null){
                     mImageUri = Uri.fromFile(photoFile);
+                    Log.i("uri", mImageUri.toString());
                     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
                     startActivityForResult(cameraIntent, CAMERA_REQUEST);
                 }
