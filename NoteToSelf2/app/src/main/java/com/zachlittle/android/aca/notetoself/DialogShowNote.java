@@ -119,12 +119,11 @@ public class DialogShowNote extends DialogFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mIvPicInNote !=null) {
+        if (mIvPicInNote.getDrawable() !=null) {
             BitmapDrawable bd = (BitmapDrawable) mIvPicInNote.getDrawable();
             bd.getBitmap().recycle();
             mIvPicInNote.setImageBitmap(null);
         }
-
     }
 
     public void sendNoteSelected(Note noteSelected) {

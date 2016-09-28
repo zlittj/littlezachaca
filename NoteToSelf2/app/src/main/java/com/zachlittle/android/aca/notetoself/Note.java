@@ -10,7 +10,7 @@ public class Note {
     private boolean mIdea;
     private boolean mTodo;
     private boolean mImportant;
-    private String mPicFilename;
+    private String mPicFilename = "";
 
     private static final String JSON_TITLE = "title";
     private static final String JSON_DESCRIPTION = "description";

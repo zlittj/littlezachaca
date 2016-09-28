@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mIvPicture != null) {
+        if(mIvPicture.getDrawable() != null) {
             BitmapDrawable bd = (BitmapDrawable) mIvPicture.getDrawable();
             bd.getBitmap().recycle();
             mIvPicture.setImageBitmap(null);
@@ -191,8 +191,8 @@ public class MainActivity extends AppCompatActivity {
     public void createNewNote(Note n){
         mNoteAdapter.addNote(n);
     }
-    public void replaceNewNote(int i, Note n){
-        mNoteAdapter.replaceNote(i, n);
+    public void replaceNewNote(int i, Note note){
+        mNoteAdapter.replaceNote(i, note);
     }
 
 
@@ -247,13 +247,20 @@ public class MainActivity extends AppCompatActivity {
             ImageView ivTodo = (ImageView) view.findViewById(R.id.imageViewTodo);
             ImageView ivIdea = (ImageView) view.findViewById(R.id.imageViewIdea);
             mIvPicture = (ImageView) view.findViewById(R.id.imageViewShowPic);
+            View listitemBackground = (View) view.findViewById(R.id.list_background);
+            View otherBackground = (View) view.findViewById(R.id.list_other_background);
 
             //Hide any ImageView widgets that are not relevant
             Note tempNote = noteList.get(whichItem);
-
+            if (whichItem % 2 ==0 || whichItem == 0){
+                listitemBackground.setBackgroundColor(getResources().getColor(R.color.backgroundColorDark));
+                otherBackground.setBackgroundColor(getResources().getColor(R.color.backgroundColorDark));
+            }else {
+                listitemBackground.setBackgroundColor(getResources().getColor(R.color.backgroundColor));
+                otherBackground.setBackgroundColor(getResources().getColor(R.color.backgroundColor));
+            }
             // To animate or not to animate
             if (tempNote.isImportant() && mAnimOption != SettingsActivity.NONE ) {
-
                 view.setAnimation(mAnimFlash);
 
             }else{

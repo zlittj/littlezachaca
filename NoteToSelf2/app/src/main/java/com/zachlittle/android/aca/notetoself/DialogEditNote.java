@@ -85,7 +85,8 @@ public class DialogEditNote extends DialogFragment {
                 newNote.setIdea(checkBoxIdea.isChecked());
                 newNote.setTodo(checkBoxTodo.isChecked());
                 newNote.setImportant(checkBoxImportant.isChecked());
-                newNote.setPicFilename(mPicFilename);
+                if (mPicFilename != null){newNote.setPicFilename(mPicFilename);}
+                else {newNote.setPicFilename("good");}
 
                 //Get a reference to Main Activity
                 MainActivity callingActivity = (MainActivity) getActivity();
@@ -108,7 +109,7 @@ public class DialogEditNote extends DialogFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mImageView !=null) {
+        if (mImageView.getDrawable() !=null) {
             BitmapDrawable bd = (BitmapDrawable) mImageView.getDrawable();
             bd.getBitmap().recycle();
             mImageView.setImageBitmap(null);
