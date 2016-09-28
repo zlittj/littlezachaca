@@ -5,9 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -43,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean mSound;
     private int mAnimOption;
     private SharedPreferences mPrefs;
+    private String mPicFilename;
+    private Uri mUriPic;
+    private Bitmap mRaw;
+    ImageView mIvPicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 Note tempNote = mNoteAdapter.getItem(whichItem);
                 DialogShowNote dialog = new DialogShowNote();
                 dialog.sendNoteSelected(tempNote);
+                dialog.sendWhichItem(whichItem);
                 dialog.show(getFragmentManager(), "");
             }
         });
@@ -141,6 +151,15 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         mNoteAdapter.saveNotes();
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mIvPicture != null) {
+            BitmapDrawable bd = (BitmapDrawable) mIvPicture.getDrawable();
+            bd.getBitmap().recycle();
+            mIvPicture.setImageBitmap(null);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -148,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -170,6 +190,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void createNewNote(Note n){
         mNoteAdapter.addNote(n);
+    }
+    public void replaceNewNote(int i, Note n){
+        mNoteAdapter.replaceNote(i, n);
     }
 
 
@@ -223,6 +246,7 @@ public class MainActivity extends AppCompatActivity {
             ImageView ivImportant = (ImageView) view.findViewById(R.id.imageViewImportant);
             ImageView ivTodo = (ImageView) view.findViewById(R.id.imageViewTodo);
             ImageView ivIdea = (ImageView) view.findViewById(R.id.imageViewIdea);
+            mIvPicture = (ImageView) view.findViewById(R.id.imageViewShowPic);
 
             //Hide any ImageView widgets that are not relevant
             Note tempNote = noteList.get(whichItem);
@@ -246,6 +270,12 @@ public class MainActivity extends AppCompatActivity {
             if (!tempNote.isIdea()){
                 ivIdea.setVisibility(View.GONE);
             }
+            if (tempNote.getPicFilename() != null){
+                mPicFilename = tempNote.getPicFilename();
+                BitmapDecoder decoder = new BitmapDecoder();
+                decoder.doInBackground();
+                decoder.onPostExecute(mRaw);
+            }else {mIvPicture.setVisibility(View.GONE);}
             txtTitle.setText(tempNote.getTitle());
             txtDescription.setText(tempNote.getDescription());
 
@@ -254,6 +284,11 @@ public class MainActivity extends AppCompatActivity {
 
         public void addNote(Note n){
             noteList.add(n);
+            notifyDataSetChanged();
+        }
+        public void replaceNote(int i, Note n){
+            noteList.remove(i);
+            noteList.add(i, n);
             notifyDataSetChanged();
         }
         public void saveNotes(){
@@ -270,4 +305,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }//end of noteadapter
+
+    class BitmapDecoder extends AsyncTask<Integer, Void, Bitmap>{
+
+
+        @Override
+        protected Bitmap doInBackground(Integer... params) {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 4;
+            mRaw = BitmapFactory.decodeFile(mPicFilename, options);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            mIvPicture.setImageBitmap(bitmap);
+        }
+    }
 }

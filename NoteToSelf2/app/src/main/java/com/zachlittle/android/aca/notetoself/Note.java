@@ -10,12 +10,14 @@ public class Note {
     private boolean mIdea;
     private boolean mTodo;
     private boolean mImportant;
+    private String mPicFilename;
 
     private static final String JSON_TITLE = "title";
     private static final String JSON_DESCRIPTION = "description";
     private static final String JSON_IDEA = "idea";
     private static final String JSON_TODO = "todo";
     private static final String JSON_IMPORTANT = "important";
+    private static final String JSON_IMAGE = "image";
 
     public Note(JSONObject jo) throws JSONException{
         mTitle = jo.getString(JSON_TITLE);
@@ -23,12 +25,18 @@ public class Note {
         mIdea = jo.getBoolean(JSON_IDEA);
         mTodo = jo.getBoolean(JSON_TODO);
         mImportant = jo.getBoolean(JSON_IMPORTANT);
+        mPicFilename = jo.getString(JSON_IMAGE);
     }
 
     public Note(){}
 
+    public String getPicFilename() {
+        return mPicFilename;
+    }
 
-
+    public void setPicFilename(String picFilename) {
+        mPicFilename = picFilename;
+    }
 
     public String getTitle() {
         return mTitle;
@@ -77,6 +85,7 @@ public class Note {
         jo.put(JSON_IDEA, mIdea);
         jo.put(JSON_TODO, mTodo);
         jo.put(JSON_IMPORTANT, mImportant);
+        jo.put(JSON_IMAGE, mPicFilename);
         return jo;
     }
 
