@@ -7,7 +7,6 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -154,11 +153,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mIvPicture.getDrawable() != null) {
-            BitmapDrawable bd = (BitmapDrawable) mIvPicture.getDrawable();
-            bd.getBitmap().recycle();
-            mIvPicture.setImageBitmap(null);
-        }
     }
 
     @Override

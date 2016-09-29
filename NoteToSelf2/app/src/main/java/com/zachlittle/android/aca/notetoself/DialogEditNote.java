@@ -109,7 +109,7 @@ public class DialogEditNote extends DialogFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mImageView.getDrawable() !=null) {
+        if (!mNote.getPicFilename().equals("good")) {
             BitmapDrawable bd = (BitmapDrawable) mImageView.getDrawable();
             bd.getBitmap().recycle();
             mImageView.setImageBitmap(null);

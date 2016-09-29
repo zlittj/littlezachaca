@@ -102,14 +102,21 @@ public class DialogShowNote extends DialogFragment {
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ByteArrayOutputStream byter = new ByteArrayOutputStream();
-                mRaw.compress(Bitmap.CompressFormat.JPEG, 100, byter);
-                String path = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), mRaw, "Title", null);
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("image/jpg");
-                intent.putExtra(Intent.EXTRA_TEXT, (mNote.getTitle()+"\n" +mNote.getDescription()));
-                intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(path));
-                startActivity(Intent.createChooser(intent, "Share Note"));
+                if(mNote.getPicFilename().equals("good")){
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("sms/mms/email");
+                    intent.putExtra(Intent.EXTRA_TEXT, (mNote.getTitle() + "\n" + mNote.getDescription()));
+                    startActivity(Intent.createChooser(intent, "Share Note"));
+                }else {
+                    ByteArrayOutputStream byter = new ByteArrayOutputStream();
+                    mRaw.compress(Bitmap.CompressFormat.JPEG, 100, byter);
+                    String path = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), mRaw, "Title", null);
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("image/jpg");
+                    intent.putExtra(Intent.EXTRA_TEXT, (mNote.getTitle() + "\n" + mNote.getDescription()));
+                    intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(path));
+                    startActivity(Intent.createChooser(intent, "Share Note"));
+                }
             }
         });
 
@@ -119,7 +126,7 @@ public class DialogShowNote extends DialogFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mIvPicInNote.getDrawable() !=null) {
+        if (!mNote.getPicFilename().equals("good")) {
             BitmapDrawable bd = (BitmapDrawable) mIvPicInNote.getDrawable();
             bd.getBitmap().recycle();
             mIvPicInNote.setImageBitmap(null);

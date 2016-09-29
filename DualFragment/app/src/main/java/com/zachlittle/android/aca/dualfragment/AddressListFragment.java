@@ -22,7 +22,6 @@ public class AddressListFragment extends ListFragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mNamesAndAddresses = AddressBook.getInstance().getBook();
         AddressListAdapter adapter = new AddressListAdapter(mNamesAndAddresses);
         setListAdapter(adapter);
