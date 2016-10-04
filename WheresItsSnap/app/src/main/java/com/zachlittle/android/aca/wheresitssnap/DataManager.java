@@ -16,8 +16,11 @@ public class DataManager {
     public static final String TABLE_ROW_TITLE = "image_title";
     public static final String TABLE_ROW_URI = "image_uri";
 
+    public static final String TABLE_ROW_LOCATION_LAT = "gps_location_lat";
+    public static final String TABLE_ROW_LOCATION_LONG = "gps_location_long";
+
     private static final String DB_NAME ="wis.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static final String TABLE_PHOTOS = "wis_table_photos";
     private static final String TABLE_TAGS = "wis_table_tags";
     private static final String TABLE_ROW_TAG1 = "tag1";
@@ -40,6 +43,8 @@ public class DataManager {
         String query = "INSERT INTO " + TABLE_PHOTOS + " (" +
                 TABLE_ROW_TITLE + ", " +
                 TABLE_ROW_URI + ", " +
+                TABLE_ROW_LOCATION_LAT + ", " +
+                TABLE_ROW_LOCATION_LONG + ", " +
                 TABLE_ROW_TAG1 + ", " +
                 TABLE_ROW_TAG2 + ", " +
                 TABLE_ROW_TAG3  +
@@ -47,6 +52,8 @@ public class DataManager {
                 "VALUES (" +
                 "'" + photo.getTitle() + "'" + ", " +
                 "'" + photo.getStorageLocation() + "'" + ", " +
+                photo.getGpsLocation().getLatitude() + ", " +
+                photo.getGpsLocation().getLongitude() + ", " +
                 "'" + photo.getTag1() + "'" + ", " +
                 "'" + photo.getTag2() + "'" + ", " +
                 "'" + photo.getTag3() + "'" +
@@ -136,6 +143,7 @@ public class DataManager {
         public CustomSQLiteOpenHelper(Context context) {
             super(context, DB_NAME, null, DB_VERSION);
         }
+
         // This method only runs the first time the database is created
         @Override
         public void onCreate(SQLiteDatabase db) {
@@ -149,6 +157,10 @@ public class DataManager {
                     + " text not null,"
                     + TABLE_ROW_URI
                     + " text not null,"
+                    + TABLE_ROW_LOCATION_LAT
+                    + " real,"
+                    + TABLE_ROW_LOCATION_LONG
+                    + " real,"
                     + TABLE_ROW_TAG1
                     + " text not null,"
                     + TABLE_ROW_TAG2
@@ -173,6 +185,18 @@ public class DataManager {
         // This method only runs when we increment DB_VERSION
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            String addLongColumn = "ALTER TABLE " +
+                    TABLE_PHOTOS +
+                    " ADD " +
+                    TABLE_ROW_LOCATION_LONG +
+                    " real;";
+            db.execSQL(addLongColumn);
+
+            String addLatColumn = "ALTER TABLE " +
+                    TABLE_PHOTOS + " ADD " +
+                    TABLE_ROW_LOCATION_LAT +
+                    " real;";
+            db.execSQL(addLatColumn);
         }
     }
 

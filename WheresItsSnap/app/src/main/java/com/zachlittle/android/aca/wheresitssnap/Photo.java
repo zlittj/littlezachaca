@@ -1,12 +1,14 @@
 package com.zachlittle.android.aca.wheresitssnap;
 
 
+import android.location.Location;
 import android.net.Uri;
 
 public class Photo {
 
     private String mTitle;
     private Uri mStorageLocation;
+    private Location mGpsLocation;
     private String mTag1;
     private String mTag2;
     private String mTag3;
@@ -14,6 +16,14 @@ public class Photo {
 
     public String getTag3() {
         return mTag3;
+    }
+
+    public Location getGpsLocation() {
+        return mGpsLocation;
+    }
+
+    public void setGpsLocation(Location gpsLocation) {
+        mGpsLocation = gpsLocation;
     }
 
     public void setTag3(String tag3) {
