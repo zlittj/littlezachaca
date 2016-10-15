@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "969379246995",
+    "firebase_url": "https://fir-demo-eda77.firebaseio.com",
+    "project_id": "fir-demo-eda77",
+    "storage_bucket": "fir-demo-eda77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969379246995:android:1aa455926bf0c8ff",
+        "android_client_info": {
+          "package_name": "com.zachlittle.android.aca.firebaseauthdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969379246995-gqi3pp1af2ghv3bmg4huno7nnf9mnktg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeLcfo8ggv5KorugAwAn82WrdH-qSLoHA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
