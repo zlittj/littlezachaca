@@ -25,34 +25,64 @@ public class MainFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private MoviesAdapter mAdapter;
     List<Movie> mMovies = new ArrayList<>();
+    private String mSearch;
+    Call<Movie.MovieResult> mCall;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mAdapter = new MoviesAdapter(getActivity());
         mRecyclerView.setAdapter(mAdapter);
 
+        Bundle bundle = getArguments();
+        if(bundle!=null) {
+            mSearch = bundle.getString("search");
+        }
+        movieSearch();
 
+        return view;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Bundle bundle = getArguments();
+        if(bundle!=null) {
+            mSearch = bundle.getString("search");
+        }
+        movieSearch();
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bundle bundle = getArguments();
+        if(bundle!=null) {
+            mSearch = bundle.getString("search");
+        }
+        movieSearch();
+    }
+
+    private void movieSearch(){
         for(int i=0; i<26; i++){
             mMovies.add(new Movie());
         }
         mAdapter.setMovieList(mMovies);
         Retrofit restAdapter = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://api.themoviedb.org/")
+                .baseUrl("https://api.themoviedb.org/")
                 .build();
         MoviesApiService apiService = restAdapter.create(MoviesApiService.class);
-
-        Call<Movie.MovieResult> call = apiService.getPopularMovies();
-        call.enqueue(new Callback<Movie.MovieResult>() {
+        if(mSearch==null || mSearch.equals("")) {
+            mCall = apiService.getPopularMovies();
+        }else{
+            mCall = apiService.getSearchedMovies(mSearch);
+        }
+        mCall.enqueue(new Callback<Movie.MovieResult>() {
             @Override
             public void onResponse(Call<Movie.MovieResult> call, Response<Movie.MovieResult> response) {
                 mAdapter.setMovieList(response.body().getResults());
@@ -84,7 +114,5 @@ public class MainFragment extends Fragment {
 
                     }
                 }));
-
-        return view;
     }
 }

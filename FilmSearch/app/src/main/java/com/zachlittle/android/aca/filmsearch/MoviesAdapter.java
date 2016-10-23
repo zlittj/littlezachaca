@@ -17,7 +17,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     private List<Movie> mMovieList;
     private LayoutInflater mInflater;
     private Context mContext;
-    private RecyclerView mView;
 
 
 

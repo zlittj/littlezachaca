@@ -14,3 +14,5 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
         imageView = (ImageView) itemView.findViewById(R.id.imageView);
     }
 }
+
+
